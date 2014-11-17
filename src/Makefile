@@ -9,6 +9,8 @@ LDFLAGS=-lmy_math -L/usr/local/lib/my_math
 all:
 	-make $(BINS)
 	-$(RM) $(DEPS) $(OBJS)
+%:%.c
+	$(CC) $^ -o $@ $(CFLAGS) $(LDFLAGS)
 clean:
 	-$(RM) $(BINS) $(OBJS) $(DEPS) *~ 
 	clear
