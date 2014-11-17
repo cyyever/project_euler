@@ -1,19 +1,24 @@
-#include <stdio.h>
-#include "ln.h"
-
-int main()
+/*
+ *	程序名：euler97.c
+ *	作者：陈源源
+ *	日期：2014-11-17
+ *	功能：解决eulerproject 97题(https://projecteuler.net/problem=97)
+ */
+int main(int argc,char **argv)
 {
-	int i,b;
-	ln sum=ln_init(1);
-	ln k=NULL;
-	ln temp=NULL;
-	ln j=ln_init(1);
-	i=2;
-	b=7830457;
-	j->lowestdigit->digit=i;
-	j->highestdigit=j->lowestdigit;
-	k=ln_init(i);
-	b--;	
+	size_t i;
+	my_rat *a;
+
+	a=my_rat_from_int64(NULL,1);
+	if(!a)
+	{
+		puts("my_rat_from_int64 failed");
+		return -1;
+	}
+
+	for(i=0;i<7830457;i++)
+	{
+	}
 	while(1)
 	{
 		temp=copy_largenums(temp,j);
