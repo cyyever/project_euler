@@ -1,10 +1,10 @@
 #include<stdio.h>
 #define N  29999999
-long long int square[N+1];
-long long int  is_square(long long int  n);
+unsigned long long int square[N+1];
+unsigned long long int  is_square(unsigned long long int  n);
 int main()
 {
-	long long int i,j,k,l;
+	unsigned long long int i,j,k,l;
 	for(i=1;i<=N;i++)
 	{
 		square[i]=i*i;
@@ -20,7 +20,7 @@ int main()
 
 				if(l=is_square(k))
 				{
-					printf("%lld^2-%lld*%lld^2=1\n",l,i,j);
+					printf("%llu^2-%llu*%llu^2=1\n",l,i,j);
 					break;
 				}
 				else
@@ -30,7 +30,7 @@ int main()
 	}
 	return 0;
 }
-long long int  is_square(long long int  n)
+unsigned long long int  is_square(unsigned long long int  n)
 {
 	int i=1,j=N;
 	while(i<=j)
