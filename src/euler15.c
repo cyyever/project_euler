@@ -7,7 +7,6 @@
 #include <stdio.h>
 #include <inttypes.h>
 
-
 /*
  *	功能：获取指定grid由you左上角到右下角的路由数量
  *	参数：
