@@ -1,5 +1,4 @@
 #include<stdio.h>
-#define N 500
 int count (int  n);
 int main()
 {
