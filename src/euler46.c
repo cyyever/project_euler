@@ -18,7 +18,6 @@ int main(int argc,char **argv)
 	size_t i,j,double_square_num;
 	uint8_t flag;
 
-	//我们先分配数字属性的数组
 	primes=malloc(N+1);
 	if(!primes)
 	{
@@ -26,7 +25,6 @@ int main(int argc,char **argv)
 		return -1;
 	}
 
-	//我们先分配数字属性的数组
 	double_squares=calloc(N,sizeof(size_t));
 	if(!double_squares)
 	{

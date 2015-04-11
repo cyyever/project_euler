@@ -17,7 +17,6 @@ int main(int argc,char **argv)
 	size_t i,j;
 	uint64_t sum;
 
-	//我们先分配数字属性的数组
 	primes=malloc(N+1);
 	if(!primes)
 	{
@@ -25,6 +24,7 @@ int main(int argc,char **argv)
 		return -1;
 	}
 
+	//标识质数
 	for(i=2;i<=N;i++)
 		primes[i]=1;
 	sum=0;
