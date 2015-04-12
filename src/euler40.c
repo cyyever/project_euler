@@ -1,8 +1,8 @@
 /*
  *	程序名：euler40.c
  *	作者：陈源源
- *	日期：2014-11-19
- *	功能：解决eulerproject 20题(https://projecteuler.net/problem=20)
+ *	日期：2015-04-12
+ *	功能：解决eulerproject 40题(https://projecteuler.net/problem=40)
  */
 #include <stdio.h>
 #include <inttypes.h>
