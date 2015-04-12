@@ -1,11 +1,15 @@
-#include <stdio.h>
-
-#include "my_arithmetic.h"
 /*
- *  跟euler48类似
+ *	程序名：euler13.c
+ *	作者：陈源源
+ *	日期：2015-04-12
+ *	功能：解决eulerproject 13题(https://projecteuler.net/problem=13)
  */
 
-int main()
+#include <stdio.h>
+#include <inttypes.h>
+#include <my_arithmetic.h>
+
+int main(int argc,char **argv)
 {
 	my_rat *nums[]=
 	{
@@ -111,18 +115,46 @@ int main()
 		my_rat_from_str(NULL,"53503534226472524250874054075591789781264330331690"),
 	};
 	my_rat *sum=my_rat_from_int64(NULL,0);
+	my_rat *base=my_rat_from_int64(NULL,10000000000);
+	char *str=NULL;
 	int i;
+	int32_t cmp_res;
 
 	for(i=0;i<100;i++)
 	{
 		if(my_rats_add(sum,nums[i],MY_ARG_RES)==NULL)
 		{
 			puts("my_rats_add failed");
-			return -1;
+			goto end;
 		}
 	}
 
-	puts(my_rat_to_str(sum));
+	while(1)
+	{
+		if(my_rats_cmp(sum,base,&cmp_res)!=MY_SUCC)
+		{
+			puts("my_rats_cmp failed");
+			goto end;
+		}
+
+		if(cmp_res<=0)
+			break;
+
+		if(my_divide_uint32(sum,10,0,MY_TRUNC,MY_ARG_RES)==NULL)
+		{
+			puts("my_divide_uint32 failed");
+			goto end;
+		}
+	}
+	str=my_rat_to_str(sum);
+	puts(str);
+
+end:
+	if(str)
+		free(str);
+	for(i=0;i<100;i++)
+		my_rat_free(nums[i]);
+	my_rat_free(sum);
+	my_rat_free(base);
 	return 0;
 }
-
