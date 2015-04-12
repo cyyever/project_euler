@@ -1,12 +1,11 @@
 /*
  *	程序名：euler26.c
  *	作者：陈源源
- *	日期：2614-11-17
+ *	日期：2015-04-12
  *	功能：解决eulerproject 26题(https://projecteuler.net/problem=26)
  */
 #include <stdio.h>
 #include <inttypes.h>
-#include <my_arithmetic.h>
 
 #define N 1000
 
