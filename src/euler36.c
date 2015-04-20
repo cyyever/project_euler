@@ -102,7 +102,6 @@ static uint64_t get_next_binary_palindromic_num(void)
 	return get_next_binary_palindromic_num();
 }
 
-
 /*
  *	功能：判断指定数字是否是回文
  *	参数：
