@@ -1,8 +1,8 @@
 /*
- *	程序名：euler108.c
+ *	程序名：euler110.c
  *	作者：陈源源
  *	日期：2015-04-20
- *	功能：解决eulerproject 108题(https://projecteuler.net/problem=108)
+ *	功能：解决eulerproject 110题(https://projecteuler.net/problem=110)
  */
 
 #include <stdio.h>
@@ -75,7 +75,7 @@ int main(int argc,char **argv)
 	//对于每个n，他的不同解的数量*2-1就是它的平方的除数数量，因此这题的实质是找出平方的除数数量超过1000*2-1的最小数字
 	//考虑到每个数字都能唯一地分解成质数的指数的乘积，我们可以用构造法来找到这个数字
 	//以下我们用动态规划来处理
-	distribute_prime_powers(1999);
+	distribute_prime_powers(7999999);
 	n=1;
 	for(i=0;i<prime_num;i++)
 	{
