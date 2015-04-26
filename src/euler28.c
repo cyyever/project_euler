@@ -2,7 +2,7 @@
  *	程序名：euler28.c
  *	作者：陈源源
  *	日期：2015-04-12
- *	功能：解决eulerproject 26题(https://projecteuler.net/problem=26)
+ *	功能：解决eulerproject 28题(https://projecteuler.net/problem=28)
  */
 #include <stdio.h>
 #include <inttypes.h>
