@@ -9,7 +9,7 @@
 #include <stdlib.h>
 #include <inttypes.h>
 
-int main(void)
+int main(int argc,char **argv)
 {
 	uint64_t H_n,P_n,T_n,T_n_max,T_n_min;
 	uint64_t H,P,T;
