@@ -9,7 +9,7 @@
 #include <string.h>
 #include <inttypes.h>
 
-static uint64_t get_next_part_pandigital_num(uint8_t *digits,uint8_t digit_num);
+static int get_next_part_pandigital_num(uint8_t *digits,uint8_t digit_num);
 
 int main(int argc,char **argv)
 {
@@ -89,7 +89,7 @@ int main(int argc,char **argv)
  *		1：成功
  *		0：已经到达最大数
  */
-static uint64_t get_next_part_pandigital_num(uint8_t *digits,uint8_t digit_num)
+static int get_next_part_pandigital_num(uint8_t *digits,uint8_t digit_num)
 {
 	ssize_t i,j,k;
 	uint16_t mask;

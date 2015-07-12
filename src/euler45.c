@@ -25,15 +25,18 @@ int main(int argc,char **argv)
 	while(1)
 	{
 		H_n++;
+		//通过公式我们可以计算出增量
 		H+=4*(H_n)-3;
 		while(P<H)
 		{
 			P_n++;
+			//通过公式我们可以计算出增量
 			P+=3*P_n-2;
 		}
 		if(P!=H)
 			continue;
 
+		//使用二分查找
 		T_n_min=P_n;
 		T_n_max=P_n*2;
 		T=(T_n_max*(T_n_max+1))/2;

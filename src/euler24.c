@@ -20,7 +20,6 @@ int main(int argc,char **argv)
 		digits[i]=i;
 
 	count=1;
-	//012   021   102   120   201   210
 	//开始生成转置
 	while(1)
 	{
@@ -39,7 +38,7 @@ int main(int argc,char **argv)
 		i--;
 		num_mask|=(1<<(digits[i]));
 
-		//增加下一个最大的数
+		//增加到下一个数
 		j=digits[i]+1;
 		while(j<N)
 		{
