@@ -18,7 +18,7 @@ int main(int argc,char **argv)
 	struct num_attr
 	{
 		uint8_t is_prime;			//是否质数
-		uint64_t per_prime_sum_num[N+1];	//每个质数结尾的质数和的数量
+		uint64_t per_prime_sum_num[N+1];	//每个质数起始的质数和的数量
 	}*nums;
 
 	nums=calloc(N+1,sizeof(*nums));
