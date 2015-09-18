@@ -16,7 +16,7 @@ int main(int argc,char **argv)
 	size_t i,j;
 	struct num_attr
 	{
-		uint64_t sum_num[N+1];	//每个数起始的和的数量
+		uint64_t sum_num[N+1];	//小于等于该数起始的和的数量
 	}*nums;
 
 	nums=calloc(N+1,sizeof(*nums));
