@@ -13,8 +13,7 @@
 
 int main(int argc,char **argv)
 {
-	size_t i,j,k;
-	uint64_t sum_num;
+	size_t i,j;
 	struct num_attr
 	{
 		uint64_t sum_num[N+1];	//每个数起始的和的数量
@@ -32,14 +31,15 @@ int main(int argc,char **argv)
 		nums[i].sum_num[i]=1;
 		for(j=i-1;j>=1;j--)
 		{
-			for(k=j;k>=1;k--)
-				nums[i].sum_num[j]+=nums[i-j].sum_num[k];
+			if(j>i-j)
+				nums[i].sum_num[j]=nums[i-j].sum_num[i-j];
+			else
+				nums[i].sum_num[j]=nums[i-j].sum_num[j];
 		}
+		for(j=2;j<=i;j++)
+			nums[i].sum_num[j]+=nums[i].sum_num[j-1];
 	}
-	sum_num=0;
-	for(i=1;i<N;i++)
-		sum_num+=nums[N].sum_num[i];
+	printf("%"PRIu64"\n",nums[N].sum_num[N]-1);
 	free(nums);
-	printf("%"PRIu64"\n",sum_num);
 	return 0;
 }
