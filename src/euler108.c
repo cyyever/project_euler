@@ -115,7 +115,7 @@ static void distribute_prime_powers(uint64_t min_divisor_num)
 			flag=0;
 			for(j=max_prime_index;j>=1;j--)
 			{
-				for(i=j-1;j>=0;i--)
+				for(i=j-1;;i--)
 				{
 					if(i==UINT64_MAX)
 						break;

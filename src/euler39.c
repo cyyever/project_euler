@@ -23,6 +23,7 @@ int main(int argc,char **argv)
 	uint64_t i,the_perimeter;
 
 	max_find=0;
+	the_perimeter=0;
 	for(i=1;i<=1000;i++)
 	{
 		find=find_triangle(i);
