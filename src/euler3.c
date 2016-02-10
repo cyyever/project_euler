@@ -8,43 +8,32 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <inttypes.h>
-
+#include <my_number_theory.h>
 
 int main(int argc,char **argv)
 {
-	uint8_t *primes;
-	size_t i,j;
-	uint64_t num,prime_num;
+	uint64_t *primes;
+	size_t i;
 
-	num=600851475143;
-	prime_num=999999;
-
-	primes=malloc(prime_num+1);
+	primes=my_primes(1000000);
 	if(!primes)
 	{
-		printf("malloc failed:%m\n");
+		puts("my_primes failed");
 		return -1;
 	}
 
-	//标识质数
-	for(i=2;i<=prime_num;i++)
-		primes[i]=1;
-	for(i=2;i<=prime_num;i++)
+	for(i=0;primes[i];i++)
+		;
+	i--;
+	while(i>=0)
 	{
-		if(primes[i])
+		if(600851475143%primes[i]==0)
 		{
-			while(num%i==0)
-				num/=i;
-			if(num==1)
-			{
-				printf("%"PRIu64"\n",i);
-				break;
-			}
-			for(j=i*2;j<=num&&j<=prime_num;j+=i)
-				primes[j]=0;
+			printf("%"PRIu64"\n",primes[i]);
+			break;
 		}
+		i--;
 	}
-
 	free(primes);
 	return 0;
 }

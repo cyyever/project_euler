@@ -8,38 +8,30 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <inttypes.h>
+#include <my_number_theory.h>
 
 #define N 20
 
 int main(int argc,char **argv)
 {
-	uint8_t *primes;
-	uint64_t product,max_prime_product;
-	size_t i,j;
+	uint64_t *primes;
+	uint64_t product,factor;
+	size_t i;
 
-	primes=malloc(N+1);
+	primes=my_primes(N);
 	if(!primes)
 	{
-		printf("malloc failed:%m\n");
+		puts("my_primes failed");
 		return -1;
 	}
 
-	//标识质数
-	for(i=2;i<=N;i++)
-		primes[i]=1;
 	product=1;
-	for(i=2;i<=N;i++)
+	for(i=0;primes[i];i++)
 	{
-		if(primes[i])
-		{
-			max_prime_product=i;
-			for(j=i*2;j<=N;j+=i)
-				primes[j]=0;
-			
-			while(max_prime_product*i<=N)
-				max_prime_product*=i;
-			product*=max_prime_product;
-		}
+		factor=primes[i];
+		while(factor*primes[i]<=N)
+			factor*=primes[i];
+		product*=factor;
 	}
 
 	printf("%"PRIu64"\n",product);
