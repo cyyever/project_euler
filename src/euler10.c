@@ -8,35 +8,27 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <inttypes.h>
+#include <my_number_theory.h>
 
 #define N 2000000
 
 int main(int argc,char **argv)
 {
-	uint8_t *primes;
-	size_t i,j;
+	uint64_t *primes;
+	size_t i;
 	uint64_t sum;
 
-	primes=malloc(N+1);
+	primes=my_primes(N);
 	if(!primes)
 	{
-		printf("malloc failed:%m\n");
+		puts("my_primes failed");
 		return -1;
 	}
 
 	//标识质数
-	for(i=2;i<=N;i++)
-		primes[i]=1;
 	sum=0;
-	for(i=2;i<=N;i++)
-	{
-		if(primes[i])
-		{
-			sum+=i;
-			for(j=i*2;j<=N;j+=i)
-				primes[j]=0;
-		}
-	}
+	for(i=0;primes[i];i++)
+		sum+=primes[i];
 
 	printf("%"PRIu64"\n",sum);
 	free(primes);

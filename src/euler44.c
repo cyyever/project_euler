@@ -61,6 +61,8 @@ int main(int argc,char **argv)
 						min_l=avg_l+1;
 				}
 
+				if(d<=j)
+					continue;
 				//k-i=j
 				min_l=k+1;
 				max_l=i+k-1;

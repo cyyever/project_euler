@@ -9,8 +9,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include <inttypes.h>
-
-static uint64_t *gen_primes(uint64_t limit);
+#include <my_number_theory.h>
 
 int main(int argc,char **argv)
 {
@@ -23,15 +22,14 @@ int main(int argc,char **argv)
 	memset(m,0,sizeof(m));
 	memset(s,0,sizeof(s));
 
-	primes=gen_primes(100000);
+	primes=my_primes(100000);
 	if(!primes)
 	{
-		puts("gen_primes failed");
+		puts("my_primes failed");
 		return -1;
 	}
 
 	i=1000000001;
-	sprintf(number,"%"PRIu64,i);
 	memset(digit_num,0,sizeof(digit_num));
 	for(j=0;j<10;j++)
 		digit_num[number[j]-'0']++;
@@ -95,48 +93,3 @@ end:
 	return 0;
 }
 
-/*
- *	功能：生成质数
- *	参数：
- *		limit：质数上限
- *	返回值：
- *		limitULL：失败
- *		非limitULL：质数数组，以零结尾
- */
-uint64_t *gen_primes(uint64_t limit)
-{
-	uint64_t *primes,*tmp;
-	size_t i,j;
-
-	primes=malloc(8*(limit+1));
-	if(!primes)
-	{
-		printf("malloc failed:%m\n");
-		return NULL;
-	}
-
-	//标识质数
-	for(i=2;i<=limit;i++)
-		primes[i]=1;
-	for(i=2;i<=limit;i++)
-	{
-		if(primes[i])
-			for(j=i*2;j<=limit;j+=i)
-				primes[j]=0;
-	}
-	for(i=2,j=0;i<=limit;i++)
-	{
-		if(primes[i])
-			primes[j++]=i;
-	}
-	primes[j]=0;
-	tmp=realloc(primes,(j+1)*8);
-	if(!tmp)
-	{
-		printf("realloc failed:%m");
-		free(primes);
-		return NULL;
-	}
-	primes=tmp;
-	return primes;
-}
