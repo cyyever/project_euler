@@ -8,7 +8,7 @@
 #include <stdlib.h>
 #include <inttypes.h>
 
-#define MAX_D			70
+#define MAX_D			80
 #define MAX_SQUARE_ROOT 	9999999
 
 uint8_t prime_nums[MAX_D+1];
