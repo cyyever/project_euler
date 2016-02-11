@@ -63,5 +63,6 @@ int main(int argc,char **argv)
 		p++;
 	}
 	printf("%zu\n",count);
+	fclose(p42);
 	return 0;
 }
