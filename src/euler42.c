@@ -15,38 +15,23 @@
 int main(int argc,char **argv)
 {
 	FILE *p42;
-	struct stat buf;
-	char *words,*p;
+	char *p;
+	char word[128];
 	int word_value,n,triangle_num;
 	size_t count;
 
-	if(stat("p042_words.txt",&buf)!=0)
-	{
-		printf("stat failed:%m");
-		return -1;
-	}
-	words=malloc(buf.st_size+1);
-	if(!words)
-	{
-		printf("malloc failed:%m");
-		return -1;
-	}
 	p42=fopen("p042_words.txt","r");
 	if(!p42)
 	{
 		printf("fopen failed:%m");
 		return -1;
 	}
-	fgets(words,buf.st_size+1,p42);
-	p=words;
 	count=0;
 	while(1)
 	{
-		p=strchr(p,'"');
-		if(!p)
-			break;
+		fscanf(p42,"%[^,]",word);
+		p=word+1;
 		word_value=0;
-		p++;
 		while(*p!='"')
 		{
 			word_value+=*p-'A'+1;
@@ -60,9 +45,11 @@ int main(int argc,char **argv)
 			else if(triangle_num>word_value)
 				break;
 		}
-		p++;
+		if(feof(p42))
+			break;
+		fscanf(p42,",");
 	}
-	printf("%zu\n",count);
 	fclose(p42);
+	printf("%zu\n",count);
 	return 0;
 }
