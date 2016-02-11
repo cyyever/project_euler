@@ -17,7 +17,7 @@ int main(int argc,char **argv)
 	FILE *p42;
 	char *p;
 	char word[128];
-	int word_value,n,triangle_num;
+	uint64_t word_value,n,triangle_num;
 	size_t count;
 
 	p42=fopen("p042_words.txt","r");
