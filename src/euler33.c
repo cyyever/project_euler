@@ -9,7 +9,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <inttypes.h>
-
+#include <my_number_theory.h>
 
 typedef struct
 {
@@ -107,31 +107,22 @@ end:
  */
 static fraction simplify_fraction(fraction f)
 {
-	static uint8_t primes[101];
-	uint32_t i,j;
+	static uint64_t *primes;
+	size_t i;
 
 	//找出100以内质数
-	if(primes[2]==0)
+	primes=my_primes(100);
+	if(!primes)
 	{
-		memset(primes,1,101);
-		for(i=2;i<=100;i++)
-		{
-			if(primes[i])
-			{
-				for(j=i*2;j<=100;j+=i)
-					primes[j]=0;
-			}
-		}
+		puts("my_primes failed");
+		exit(EXIT_FAILURE);
 	}
-	for(i=2;i<=100;i++)
+	for(i=0;primes[i];i++)
 	{
-		if(primes[i])
+		while(f.numerator%primes[i]==0 && f.denominator%primes[i]==0)
 		{
-			while(f.numerator%i==0 && f.denominator%i==0)
-			{
-				f.numerator/=i;
-				f.denominator/=i;
-			}
+			f.numerator/=primes[i];
+			f.denominator/=primes[i];
 		}
 	}
 	return f;
