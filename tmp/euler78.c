@@ -10,7 +10,7 @@
 #include <inttypes.h>
 #include <my_arithmetic.h>
 
-#define N 10
+#define N 100000
 
 int main(int argc,char **argv)
 {
@@ -46,7 +46,6 @@ static	struct
 			{
 				ways[i-j].sum_num=q->next;
 				q->next=NULL;
-		//		printf("fetch node i=%d j=%d \n",(int)i,(int)j);
 			}
 			else
 			{
@@ -56,6 +55,7 @@ static	struct
 					printf("calloc failed:%m\n");
 					return -1;
 				}
+				alloc_cnt++;
 				q->sum_num.small_sum_num=1;
 			}
 			if(!p)
@@ -63,28 +63,6 @@ static	struct
 			else
 				p->next=q;
 			p=q;
-			alloc_cnt++;
-		}
-		for(;j<i && ways[i-j].sum_num;j++)
-		{
-			while(ways[i-j].sum_num)
-			{
-				q=ways[i-j].sum_num;
-				ways[i-j].sum_num=q->next;
-				free(q);
-				alloc_cnt--;
-			}
-		}
-		if(i==20)
-		{
-			for(j=0;j<i;j++)
-			{
-				if(ways[j].sum_num)
-				{
-					printf("还有 j=%d",(int)j);
-					break;
-				}
-			}
 		}
 		printf("alloc cnt=%zu \n",alloc_cnt);
 
@@ -158,7 +136,7 @@ static	struct
 			}
 			else
 				printf("i=%zu j=%zu %"PRIu64"\n",i,j,(p->sum_num.small_sum_num));
-	//		break;
+			break;
 		}
 		if(ways[i].sum_num->type==1)
 		{
