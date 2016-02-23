@@ -10,7 +10,7 @@
 #include <my_number_theory.h>
 #include <string.h>
 
-#define MAX_D			200
+#define MAX_D			1000
 
 static unsigned __int128 *squares;
 static uint64_t min_square_root;
@@ -81,18 +81,25 @@ int main(int argc,char **argv)
 				break;
 			j--;
 		}
+		if(primes[j]==i)
+			continue;
 		solutions[solution_num].max_prime_factor=primes[j];
-		solutions[solution_num].factor_of_prime_factor=1;
+		if(i==2)
+			solutions[solution_num].factor_of_prime_factor=1;
+		else
+			solutions[solution_num].factor_of_prime_factor=1;
+	//	else
+	//		solutions[solution_num].factor_of_prime_factor=solutions[solution_num].max_prime_factor;
 		solutions[solution_num].y=1;
 		solution_num++;
 	}
 
-	max_x=3;
+	max_x=0;
 	while(solution_num>1)
 	{
 		for(i=0;i<solution_num;i++)
 		{
-			if(solutions[i].min_square_root!=100000)
+			if(solutions[i].D!=solutions[i].max_prime_factor && solutions[i].min_square_root!=100000)
 				break;
 		}
 		if(i==solution_num)
@@ -108,12 +115,24 @@ int main(int argc,char **argv)
 		//注意y^2=(x+1)(x-1)/D，那么x+1或者x-1是max_prime_factor的倍数，利用这点快速迭代x
 		while(1)
 		{
+
+//			a(ad-1)=
+//				a必须是平方数
+
+		//			i(id-2)
+	//		20(20*113-2)
+	//
+	//		i(id-2)
+
+//			i(id+2)
+//		id(id-2)
 			//考虑x+1的情况，这边i是x+1的倍数
 			solutions[i].x=solutions[i].factor_of_prime_factor*solutions[i].max_prime_factor-1;
+		//	printf("solutions[solution_num].factor_of_prime_factor=%"PRIu64" x=%"PRIu64"\n",(uint64_t)(solutions[solution_num].factor_of_prime_factor),solutions[i].x);
 			y_square=solutions[i].x*solutions[i].x-1;
 			if(y_square!=0 && (solutions[i].max_prime_factor==solutions[i].D || y_square%solutions[i].D==0))
 			{
-					y_square/=solutions[i].D;
+				y_square/=solutions[i].D;
 				if(y_square>squares[99999])
 				{
 					solutions[i].min_square_root=100000;
@@ -134,6 +153,8 @@ int main(int argc,char **argv)
 				if(solutions[i].min_square_root<=max_square_root)
 				{
 					printf("--%"PRIu64"^2-%"PRIu64"*%"PRIu64"^2=1\n",(uint64_t)(solutions[i].x),(uint64_t)solutions[i].D,(uint64_t)square_root+min_square_root);
+					printf("solutions[solution_num].factor_of_prime_factor=%"PRIu64"\n",(uint64_t)(solutions[i].factor_of_prime_factor));
+					printf("solutions[solution_num].max_prime_factor=%"PRIu64"\n",(uint64_t)(solutions[i].max_prime_factor));
 					if(solutions[i].x>max_x)
 						max_x=solutions[i].x;
 					memmove(solutions+i,solutions+i+1,(solution_num-i-1)*sizeof(*solutions));
@@ -147,7 +168,7 @@ int main(int argc,char **argv)
 			y_square=solutions[i].x*solutions[i].x-1;
 			if(solutions[i].max_prime_factor==solutions[i].D || y_square%solutions[i].D==0)
 			{
-					y_square/=solutions[i].D;
+				y_square/=solutions[i].D;
 				if(y_square>squares[99999])
 				{
 					solutions[i].min_square_root=100000;
@@ -167,6 +188,8 @@ int main(int argc,char **argv)
 
 				if(solutions[i].min_square_root<=max_square_root)
 				{
+					printf("%"PRIu64"^2-%"PRIu64"*%"PRIu64"^2=1\n",(uint64_t)(solutions[i].x),(uint64_t)solutions[i].D,(uint64_t)square_root+min_square_root);
+					printf("solutions[solution_num].factor_of_prime_factor=%"PRIu64"\n",(uint64_t)(solutions[i].factor_of_prime_factor));
 					if(solutions[i].x>max_x)
 						max_x=solutions[i].x;
 					memmove(solutions+i,solutions+i+1,(solution_num-i-1)*sizeof(*solutions));
@@ -174,7 +197,12 @@ int main(int argc,char **argv)
 					break;
 				}
 			}
-			solutions[i].factor_of_prime_factor++;
+			//如果D>2，那么由于y^2=factor_of_prime_factor*max_prime_factor(factor_of_prime_factor*max_prime_factor-2)或者factor_of_prime_factor*max_prime_factor(factor_of_prime_factor*max_prime_factor+2)				
+			//那么factor_of_prime_factor必须是max_prime_factor的倍数，否则max_prime_factor找不到平方的可能
+	//		if(solutions[i].D==2)
+				solutions[i].factor_of_prime_factor++;
+	//		else 
+	//			solutions[i].factor_of_prime_factor+=solutions[i].max_prime_factor;
 		}
 	}
 
