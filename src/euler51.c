@@ -13,7 +13,7 @@
 
 int main(int argc,char **argv)
 {
-	uint64_t digit_num,replace_digit_num,num,prime;
+	uint64_t digit_num,replace_digit_num,num,prime,finded_prime;
 	uint8_t *combination;
 	ssize_t i;
 	size_t count;
@@ -25,6 +25,7 @@ int main(int argc,char **argv)
 
 	digit_num=4;
 	prime=0;
+	finded_prime=0;
 
 	while(1)
 	{
@@ -58,6 +59,8 @@ int main(int argc,char **argv)
 						}
 
 						num=strtoull(num_str,NULL,10);
+						if(finded_prime!=0&&num>finded_prime)
+							break;
 						if(my_is_prime(num))
 						{
 							if(count==0)
@@ -69,10 +72,10 @@ int main(int argc,char **argv)
 
 					if(count==8)
 					{
-						printf("%"PRIu64"\n",prime);
-						free(combination);
-						free(num_str);
-						return 0;
+						if(finded_prime==0)
+							finded_prime=prime;
+						else if(prime<finded_prime)
+							finded_prime=prime;
 					}
 
 					for(i=digit_num-1;i>=0;i--)
@@ -91,7 +94,10 @@ int main(int argc,char **argv)
 			free(combination);
 		}
 		free(num_str);
+		if(finded_prime!=0)
+			break;
 		digit_num++;
 	}
+	printf("%"PRIu64"\n",finded_prime);
 	return 0;
 }
