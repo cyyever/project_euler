@@ -34,6 +34,7 @@ int main(int argc,char **argv)
 			printf("malloc failed:%m\n");
 			return -1;
 		}
+		num_str[digit_num]='\0';
 		for(replace_digit_num=3;replace_digit_num<digit_num;replace_digit_num+=3)
 		{
 			combination=NULL;
@@ -69,6 +70,8 @@ int main(int argc,char **argv)
 					if(count==8)
 					{
 						printf("%"PRIu64"\n",prime);
+						free(combination);
+						free(num_str);
 						return 0;
 					}
 
