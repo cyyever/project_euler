@@ -50,7 +50,7 @@ int main(int argc,char **argv)
 						replace_digit='1';
 					else
 						replace_digit='0';
-					while(replace_digit<='9')
+					while(replace_digit<='9' && count+'9'-replace_digit+1>=8)
 					{
 						for(i=0;i<digit_num;i++)
 						{
