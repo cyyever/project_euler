@@ -70,7 +70,7 @@ int main(int argc,char **argv)
 						replace_digit++;
 					}
 
-					if(count==8)
+					if(count==8) //我们已经找到一个，但是无法确定它是不是最小的
 					{
 						if(finded_prime==0)
 							finded_prime=prime;
