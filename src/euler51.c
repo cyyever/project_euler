@@ -13,19 +13,19 @@
 
 int main(int argc,char **argv)
 {
-	uint64_t digit_num,replace_digit_num,num,prime,finded_prime;
+	uint64_t digit_num,replace_digit_num,num,prime,finded_prime,distance;
 	uint8_t *combination;
 	ssize_t i;
 	size_t count;
-	char replace_digit;
+	char replace_digit,digit;
 	char *num_str;
 
-	//0 n 2n 3n
+	//x x+n x+2n x+3n
 	//由于我们要获得8个质数的家族，那么在0-9中，不管我们怎么分，至少有4个数是连续的，如果我们替换的digit数量不是3的倍数，总会出现一个数能被3整除，那么它肯定不是质数，矛盾，同时要替换的digit不能出现在最低位，不然4个连续的数有一个会被2整除，那么它肯定不是质数
 
 	digit_num=4;
 	prime=0;
-	finded_prime=0;
+	finded_prime=UINT64_MAX;
 
 	while(1)
 	{
@@ -41,53 +41,55 @@ int main(int argc,char **argv)
 			combination=NULL;
 			while(my_next_combination(digit_num-1,replace_digit_num,&combination))
 			{
-				memset(num_str,'0',digit_num);
+				for(i=0;i<digit_num-1;i++)
+					num_str[i]='0'+combination[i];
+				num_str[digit_num-1]='0';
+				distance=strtoull(num_str,NULL,10);
+				if(combination[0]==1)	//首位从1开始替换
+					replace_digit='1';
+				else
+					replace_digit='0';
 				num_str[0]='1';
 				num_str[digit_num-1]='1';
 				while(1)
 				{
-					count=0;
-					if(combination[0]==1)	//首位从1开始替换
-						replace_digit='1';
-					else
-						replace_digit='0';
-					while(replace_digit<='9' && count+'9'-replace_digit+1>=8)
+					for(i=0;i<digit_num-1;i++)
 					{
-						for(i=0;i<digit_num-1;i++)
-						{
-							if(combination[i])
-								num_str[i]=replace_digit;
-						}
-
-						num=strtoull(num_str,NULL,10);
-						if(finded_prime!=0 && num>finded_prime)
-							break;
+						if(combination[i])
+							num_str[i]=replace_digit;
+					}
+					num=strtoull(num_str,NULL,10);
+					count=0;
+					digit=replace_digit;
+					do
+					{
 						if(my_is_prime(num))
 						{
 							if(count==0)
 								prime=num;
 							count++;
 						}
-						replace_digit++;
+						digit++;
+						num+=distance;
 					}
+					while(digit<='9' && count+'9'-digit+1>=8);
+
 					if(count==8) //我们已经找到一个，但是无法确定它是不是最小的
 					{
-						if(finded_prime==0)
-							finded_prime=prime;
-						else if(prime<finded_prime)
+						if(prime<finded_prime)
 							finded_prime=prime;
 					}
 
 					if(num_str[digit_num-1]<'8')
 					{
-						if(num_str[i]=='3')
-							num_str[i]='7';
+						if(num_str[digit_num-1]=='3')
+							num_str[digit_num-1]='7';
 						else
-							num_str[i]+=2;
+							num_str[digit_num-1]+=2;
 						continue;
 					}
 
-					for(i=digit_num-2;i>=0;i--)
+					for(i=digit_num-1;i>=0;i--)
 					{
 						if(!combination[i]&&num_str[i]<'9')
 						{
@@ -104,7 +106,7 @@ int main(int argc,char **argv)
 			free(combination);
 		}
 		free(num_str);
-		if(finded_prime!=0)
+		if(finded_prime!=UINT64_MAX)
 			break;
 		digit_num++;
 	}
