@@ -39,10 +39,11 @@ int main(int argc,char **argv)
 		for(replace_digit_num=3;replace_digit_num<digit_num;replace_digit_num+=3)
 		{
 			combination=NULL;
-			while(my_next_combination(digit_num,replace_digit_num,&combination))
+			while(my_next_combination(digit_num-1,replace_digit_num,&combination))
 			{
 				memset(num_str,'0',digit_num);
 				num_str[0]='1';
+				num_str[digit_num-1]='1';
 				while(1)
 				{
 					count=0;
@@ -52,14 +53,14 @@ int main(int argc,char **argv)
 						replace_digit='0';
 					while(replace_digit<='9' && count+'9'-replace_digit+1>=8)
 					{
-						for(i=0;i<digit_num;i++)
+						for(i=0;i<digit_num-1;i++)
 						{
 							if(combination[i])
 								num_str[i]=replace_digit;
 						}
 
 						num=strtoull(num_str,NULL,10);
-						if(finded_prime!=0&&num>finded_prime)
+						if(finded_prime!=0 && num>finded_prime)
 							break;
 						if(my_is_prime(num))
 						{
@@ -69,7 +70,6 @@ int main(int argc,char **argv)
 						}
 						replace_digit++;
 					}
-
 					if(count==8) //我们已经找到一个，但是无法确定它是不是最小的
 					{
 						if(finded_prime==0)
@@ -78,12 +78,22 @@ int main(int argc,char **argv)
 							finded_prime=prime;
 					}
 
-					for(i=digit_num-1;i>=0;i--)
+					if(num_str[digit_num-1]<'8')
+					{
+						if(num_str[i]=='3')
+							num_str[i]='7';
+						else
+							num_str[i]+=2;
+						continue;
+					}
+
+					for(i=digit_num-2;i>=0;i--)
 					{
 						if(!combination[i]&&num_str[i]<'9')
 						{
 							num_str[i]++;
 							memset(num_str+i+1,'0',digit_num-i-1);
+							num_str[digit_num-1]='1';
 							break;
 						}
 					}
