@@ -1,94 +1,106 @@
 /*
  *	程序名：euler111.c
  *	作者：陈源源
- *	日期：2016-02-06
+ *	日期：2016-02-28
  *	功能：解决eulerproject 111题(https://projecteuler.net/problem=111)
  */
 
 #include <stdio.h>
-#include <string.h>
 #include <stdlib.h>
+#include <string.h>
 #include <inttypes.h>
 #include <my_number_theory.h>
 
 int main(int argc,char **argv)
 {
-	uint64_t i;
-	int64_t j;
-	uint64_t count,*primes;
-	uint64_t m[10],s[10],digit_num[11];
-	char number[11];
+	uint64_t repeated_digit_num,num;
+	uint8_t *combination;
+	ssize_t i,j;
+	uint64_t S[10],sum;
+	char d,lowest_digit;
+	char num_str[11];
 
-	memset(m,0,sizeof(m));
-	memset(s,0,sizeof(s));
-
-	primes=my_primes(100000);
-	if(!primes)
+	num_str[10]='\0';
+	sum=0;
+	for(d='0';d<='9';d++)
 	{
-		puts("my_primes failed");
-		return -1;
+		S[d-'0']=0;
+		if(d=='0')
+			lowest_digit='1';
+		else
+			lowest_digit='0';
+		for(repeated_digit_num=9;repeated_digit_num>=2;repeated_digit_num--)
+		{
+			combination=NULL;
+			while(my_next_combination(10,repeated_digit_num,&combination))
+			{
+				if(combination[0] && d=='0')
+					continue;
+				if(combination[9])
+				{
+					if(((d-'0')&1)==0)
+						continue;
+					else if(d=='5')
+						continue;
+				}
+				for(i=0;i<10;i++)
+				{
+					if(combination[i])
+						num_str[i]=d;
+					else
+						num_str[i]=lowest_digit;
+				}
+				if(!combination[0])
+				{
+					if(d!='1')
+						num_str[0]='1';
+					else
+						num_str[0]='2';
+				}
+
+				while(1)
+				{
+					num=strtoull(num_str,NULL,10);
+					if(my_is_prime(num))
+					{
+						S[d-'0']+=num;
+
+					}
+					for(i=9;i>=0;i--)
+					{
+						if(combination[i])
+							continue;
+						if(num_str[i]<'9')
+						{
+							num_str[i]++;
+							if(num_str[i]==d)
+								num_str[i]++;
+							if(num_str[i]<='9')
+							{
+								for(j=i+1;j<10;j++)
+								{
+									if(combination[j])
+										num_str[j]=d;
+									else
+										num_str[j]=lowest_digit;
+								}
+								break;
+							}
+						}
+					}
+					if(i<0)
+						break;
+				}
+			}
+			free(combination);
+			if(S[d-'0']!=0)
+			{
+				sum+=S[d-'0'];
+				break;
+			}
+		}
 	}
 
-	i=1000000001;
-	memset(digit_num,0,sizeof(digit_num));
-	for(j=0;j<10;j++)
-		digit_num[number[j]-'0']++;
-
-	puts(number);
-	while(i<10000000000)
-	{
-		for(j=0;j<10;j++)
-		{	
-			if(digit_num[j]>=m[j])
-				break;
-		}
-
-		if(j>=10)
-			goto end;
-
-		for(j=0;primes[j];j++)
-		{
-			if(i%primes[j]==0)
-				break;
-		}
-
-		//不是质数
-		if(primes[j])
-			goto end;
-
-		for(j=0;j<10;j++)
-		{	
-			if(digit_num[j]>m[j])
-			{
-				m[j]=digit_num[j];
-				s[j]=i;
-			}
-			else if(digit_num[j]==m[j])
-				s[j]+=i;
-		}
-end:
-		i+=2;
-		digit_num[number[9]-'0']--;
-		number[9]+=2;
-		for(j=9;j>=0;j--)
-		{
-			if(number[j]>'9')
-			{
-				number[j]=number[j]-'9'+'0'-1;
-				digit_num[number[j-1]-'0']--;
-				digit_num[number[j]-'0']++;
-				number[j-1]+=1;
-			}
-			else
-			{
-				digit_num[number[j]-'0']++;
-				break;
-			}
-		}
-	}
-	count=0;
-	for(i=0;i<10;i++)
-		count+=s[i];
-	printf("%"PRIu64"\n",count);
+	printf("%"PRIu64"\n",sum);
 	return 0;
 }

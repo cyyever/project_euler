@@ -99,7 +99,7 @@ int main(int argc,char **argv)
 							break;
 						}
 					}
-					if(i<=0)
+					if(i<0)
 						break;
 				}
 			}
