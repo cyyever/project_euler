@@ -25,7 +25,6 @@ int main(int argc,char **argv)
 	{
 		//先获取最右边的逆
 		i=N-1;
-		j=0;
 		num_mask=0;
 		while(i>0 && digits[i]<digits[i-1])
 		{

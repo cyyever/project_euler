@@ -17,7 +17,6 @@ int main(int argc,char **argv)
 	uint64_t n,sum;
 
 	sum=0;
-	n=0;
 	while(1)
 	{
 		n=get_next_binary_palindromic_num();

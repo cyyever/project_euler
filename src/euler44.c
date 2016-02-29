@@ -44,8 +44,6 @@ int main(int argc,char **argv)
 				//k-j=i
 				min_l=k+1;
 				max_l=j+k-1;
-				avg_l=1;
-				P_avg_l=1;
 				while(min_l<=max_l)
 				{
 					avg_l=(min_l+max_l)/2;
@@ -66,8 +64,6 @@ int main(int argc,char **argv)
 				//k-i=j
 				min_l=k+1;
 				max_l=i+k-1;
-				avg_l=1;
-				P_avg_l=1;
 				while(min_l<=max_l)
 				{
 					avg_l=(min_l+max_l)/2;

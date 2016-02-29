@@ -16,10 +16,8 @@ int main(int argc,char **argv)
 	
 	H_n=143;
 	P_n=165;
-	T_n=285;
 	H=40755;
 	P=40755;
-	T=40755;
 
 	//我们从285开始遍历
 	while(1)

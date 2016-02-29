@@ -82,7 +82,6 @@ static int get_prev_pandigital_num(uint8_t *digits,uint8_t max_digit)
 	{
 		//先获取最右边的逆
 		i=max_digit-1;
-		j=0;
 		num_mask=0;
 		while(i>0 && digits[i]>digits[i-1])
 		{

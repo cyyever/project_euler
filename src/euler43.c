@@ -161,7 +161,6 @@ int main(int argc,char **argv)
 		}
 		else if(i==5) //遍历d5
 		{
-			divisor=7;
 			if(digit_stack[i]==-1)	//刚开始
 				tmp_num=0;
 			else	//继续上次的迭代
@@ -231,7 +230,6 @@ int main(int argc,char **argv)
 		}
 		else if(i==7) //遍历d3
 		{
-			divisor=3;
 			if(digit_stack[i]==-1)	//刚开始
 				tmp_num=0;
 			else	//继续上次的迭代
