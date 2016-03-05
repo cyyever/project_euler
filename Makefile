@@ -1,4 +1,4 @@
 pull:
-	git pull git@gitcafe.com:cyy_ever/euler_project.git master
+	git pull git@github.com:cyyever/euler_project.git master
 push:
-	git push git@gitcafe.com:cyy_ever/euler_project.git master
+	git push git@github.com:cyyever/euler_project.git master
