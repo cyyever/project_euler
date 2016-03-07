@@ -43,15 +43,15 @@ int main(int argc,char **argv)
  */
 vector<uint64_t> get_root_of_square_form(uint8_t digit)
 {
-	uint64_t base,mod2,pre_sum,number;
+	uint64_t base,mod,pre_sum,number;
 	ssize_t i,j;
 	uint8_t digit2;
 	vector<uint64_t> roots,part_roots;
 	char square_str[50];
 
-	mod2=10;
-	for(i=9;i>=digit;i--)
-		mod2*=100;
+	mod=1000;
+	for(i=8;i>=digit;i--)
+		mod*=100;
 
 	if(digit==9)
 		part_roots.push_back(0);
@@ -68,11 +68,12 @@ vector<uint64_t> get_root_of_square_form(uint8_t digit)
 		while(base<=*part_root)
 			base*=10;
 
-		for(i=0;;i++)
+		pre_sum=0;
+		while(1)
 		{
-			pre_sum=base*i;
 			number=(pre_sum+*part_root);
-			if(number>mod2)
+			pre_sum+=base;
+			if(number>mod)
 				break;
 			//怎么也不能超过Sqrt[1929394959697989990]
 			if(number>1389026623)
@@ -99,7 +100,7 @@ vector<uint64_t> get_root_of_square_form(uint8_t digit)
 				continue;
 			
 			if(find(roots.begin(),roots.end(),number)==roots.end())
-					roots.push_back(number);
+				roots.push_back(number);
 		}
 	}
 	return roots;
