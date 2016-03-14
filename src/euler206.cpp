@@ -6,9 +6,9 @@
  */
 #include <iostream>
 #include <vector>
-#include <inttypes.h>
+#include <cinttypes>
 #include <algorithm>
-#include <string.h>
+#include <string>
 
 using namespace std;
 

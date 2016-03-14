@@ -8,7 +8,7 @@
 #include <fstream>
 #include <string>
 #include <vector>
-#include <inttypes.h>
+#include <cinttypes>
 
 using namespace std;
 int main(int argc,char **argv)
