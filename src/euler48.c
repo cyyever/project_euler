@@ -8,7 +8,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <inttypes.h>
-#include <my_arithmetic.h>
 
 int main(int argc,char **argv)
 {
