@@ -6,7 +6,7 @@
  */
 
 #include <iostream>
-#include <my_number_theory.h>
+#include <my_math.h>
 
 using namespace my_math;
 using namespace std;
