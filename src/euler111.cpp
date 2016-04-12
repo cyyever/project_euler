@@ -1,20 +1,21 @@
 /*
- *	程序名：euler111.c
+ *	程序名：euler111.cpp
  *	作者：陈源源
  *	日期：2016-02-28
  *	功能：解决eulerproject 111题(https://projecteuler.net/problem=111)
  */
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <inttypes.h>
-#include <my_number_theory.h>
+#include <iostream>
+#include <my_math.h>
+
+using namespace my_math;
+using namespace std;
 
 int main(int argc,char **argv)
 {
 	uint64_t repeated_digit_num,num;
-	uint8_t *combination;
+	bool first_combination;
+	vector<bool> combination;
 	ssize_t i,j;
 	uint64_t S[10],sum;
 	char d,lowest_digit;
@@ -31,9 +32,18 @@ int main(int argc,char **argv)
 			lowest_digit='0';
 		for(repeated_digit_num=9;repeated_digit_num>=2;repeated_digit_num--)
 		{
-			combination=NULL;
-			while(my_next_combination(10,repeated_digit_num,&combination))
+			first_combination=true;
+			while(1)
 			{
+				if(first_combination)
+				{
+					combination=my_next_combination(10,repeated_digit_num);
+					first_combination=false;
+				}
+				else
+					combination=my_next_combination(10,repeated_digit_num,combination);
+				if(combination.size()==0)
+					break;
 				if(combination[0] && d=='0')
 					continue;
 				if(combination[9])
@@ -60,12 +70,9 @@ int main(int argc,char **argv)
 
 				while(1)
 				{
-					num=strtoull(num_str,NULL,10);
-					if(my_is_prime(num))
-					{
+					num=stoull(num_str);
+					if(is_prime(num))
 						S[d-'0']+=num;
-
-					}
 					for(i=9;i>=0;i--)
 					{
 						if(combination[i])
@@ -92,7 +99,6 @@ int main(int argc,char **argv)
 						break;
 				}
 			}
-			free(combination);
 			if(S[d-'0']!=0)
 			{
 				sum+=S[d-'0'];
@@ -101,6 +107,6 @@ int main(int argc,char **argv)
 		}
 	}
 
-	printf("%"PRIu64"\n",sum);
+	cout<<sum<<endl;
 	return 0;
 }

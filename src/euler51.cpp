@@ -1,24 +1,26 @@
 /*
- *	程序名：euler51.c
+ *	程序名：euler51.cpp
  *	作者：陈源源
  *	日期：2016-02-23
  *	功能：解决eulerproject 51题(https://projecteuler.net/problem=51)
  */
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <inttypes.h>
-#include <my_number_theory.h>
+#include <iostream>
+#include <string>
+#include <my_math.h>
+
+using namespace my_math;
+using namespace std;
 
 int main(int argc,char **argv)
 {
-	uint64_t digit_num,replace_digit_num,num,prime,finded_prime,distance;
-	uint8_t *combination;
-	ssize_t i;
+	uint64_t num,prime,finded_prime,distance;
+	bool first_combination;
+	vector<bool> combination;
+	ssize_t i,digit_num,replace_digit_num;
 	size_t count;
 	char replace_digit,digit;
-	char *num_str;
+	string num_str;
 
 	//x x+n x+2n x+3n
 	//由于我们要获得8个质数的家族，那么在0-9中，不管我们怎么分，至少有4个数是连续的，如果我们替换的digit数量不是3的倍数，总会出现一个数能被3整除，那么它肯定不是质数，矛盾，同时要替换的digit不能出现在最低位，不然4个连续的数有一个会被2整除，那么它肯定不是质数
@@ -29,22 +31,26 @@ int main(int argc,char **argv)
 
 	while(1)
 	{
-		num_str=malloc(digit_num+1);
-		if(!num_str)
-		{
-			printf("malloc failed:%m\n");
-			return -1;
-		}
-		num_str[digit_num]='\0';
+		num_str=string(digit_num,'0');
 		for(replace_digit_num=3;replace_digit_num<digit_num;replace_digit_num+=3)
 		{
-			combination=NULL;
-			while(my_next_combination(digit_num-1,replace_digit_num,&combination))
+			first_combination=true;
+			while(1)
 			{
+				if(first_combination)
+				{
+					combination=my_next_combination(digit_num-1,replace_digit_num);
+					first_combination=false;
+				}
+				else
+					combination=my_next_combination(digit_num-1,replace_digit_num,combination);
+				if(combination.size()==0)
+					break;
+
 				for(i=0;i<digit_num-1;i++)
 					num_str[i]='0'+combination[i];
 				num_str[digit_num-1]='0';
-				distance=strtoull(num_str,NULL,10);
+				distance=stoull(num_str);
 				if(combination[0]==1)	//首位从1开始替换
 					replace_digit='1';
 				else
@@ -58,12 +64,12 @@ int main(int argc,char **argv)
 						if(combination[i])
 							num_str[i]=replace_digit;
 					}
-					num=strtoull(num_str,NULL,10);
+					num=stoull(num_str);
 					count=0;
 					digit=replace_digit;
 					do
 					{
-						if(my_is_prime(num))
+						if(is_prime(num))
 						{
 							if(count==0)
 								prime=num;
@@ -94,7 +100,7 @@ int main(int argc,char **argv)
 						if(!combination[i]&&num_str[i]<'9')
 						{
 							num_str[i]++;
-							memset(num_str+i+1,'0',digit_num-i-1);
+							num_str.replace(i+1,digit_num-i-1,digit_num-i-1,'0');
 							num_str[digit_num-1]='1';
 							break;
 						}
@@ -103,13 +109,11 @@ int main(int argc,char **argv)
 						break;
 				}
 			}
-			free(combination);
 		}
-		free(num_str);
 		if(finded_prime!=UINT64_MAX)
 			break;
 		digit_num++;
 	}
-	printf("%"PRIu64"\n",finded_prime);
+	cout<<finded_prime<<endl;
 	return 0;
 }
