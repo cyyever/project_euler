@@ -1,8 +1,7 @@
 SRCS=$(wildcard *.c) $(wildcard *.cpp)  
 BINS=$(patsubst %.cpp,%,$(patsubst %.c,%,$(SRCS)))
 CC=clang
-CXX=clang++
-#-std=c++11
+CXX=clang++ -std=c++11
 CFLAGS=-O2 -Wall -Wextra -g -I/usr/local/include/my_math
 CPPFLAGS=-O2 -Wall -Wextra -g -I/usr/local/include/my_math
 LDFLAGS=-lmy_math -L/usr/local/lib/my_math
