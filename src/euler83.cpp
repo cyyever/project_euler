@@ -32,7 +32,6 @@ int main(int argc,char **argv)
 	path p;
 	gird_coordinate next_gird,last_gird;
 	list<path> all_paths;
-	list<gird_coordinate> large_girds;
 
 	ifstream in_file("p083_matrix.txt");
 	for(i=0;i<80;i++)
@@ -53,14 +52,13 @@ int main(int argc,char **argv)
 		for(j=0;j<80;j++)
 			path_sum[i][j]=UINT64_MAX;
 
-	path_sum[0][0]=matrix[0][0];
-
 	//我们依次迭代所有可能的路径
 	while(all_paths.size()>0)
 	{
 		p=all_paths.front();
 		all_paths.pop_front();
 
+		//剪分支
 		if(p.path_sum>=path_sum[79][79])
 			continue;
 
