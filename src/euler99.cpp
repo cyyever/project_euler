@@ -6,8 +6,6 @@
  */
 #include <iostream>
 #include <fstream>
-#include <string>
-#include <vector>
 #include <cinttypes>
 #include <my_math.h>
 
