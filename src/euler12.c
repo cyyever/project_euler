@@ -5,34 +5,31 @@
  *	功能：解决eulerproject 12题(https://projecteuler.net/problem=12)
  */
 
-#include <stdio.h>
 #include <inttypes.h>
+#include <stdio.h>
 
 #define N 500
 
 static uint64_t get_factor_num(uint64_t num);
 
-int main(int argc,char **argv)
-{
-	uint64_t i,sum,factor_num;
+int main(void) {
+  uint64_t i, sum, factor_num;
 
-	i=1;
-	sum=1;
-	while(1)
-	{
-		i++;
-		sum+=i;
-		if(sum<N)
-			continue;
-		
-		factor_num=get_factor_num(sum);
-		if(factor_num>N)
-		{
-			printf("%"PRIu64"\n",sum);
-			break;
-		}
-	}
-	return 0;
+  i = 1;
+  sum = 1;
+  while (1) {
+    i++;
+    sum += i;
+    if (sum < N)
+      continue;
+
+    factor_num = get_factor_num(sum);
+    if (factor_num > N) {
+      printf("%" PRIu64 "\n", sum);
+      break;
+    }
+  }
+  return 0;
 }
 
 /*
@@ -42,25 +39,20 @@ int main(int argc,char **argv)
  *	返回值：
  *		因数数量
  */
-static uint64_t get_factor_num(uint64_t num)
-{
-	uint64_t factor_num,i,j;
-	
-	factor_num=2;
-	j=num-1;
-	for(i=2;i<j;i++)
-	{
-		if(num%i==0)
-		{
-			j=num/i;
-			if(i==j)
-			{
-				factor_num++;
-				break;
-			}
-			else
-				factor_num+=2;
-		}
-	}
-	return factor_num;
+static uint64_t get_factor_num(uint64_t num) {
+  uint64_t factor_num, i, j;
+
+  factor_num = 2;
+  j = num - 1;
+  for (i = 2; i < j; i++) {
+    if (num % i == 0) {
+      j = num / i;
+      if (i == j) {
+        factor_num++;
+        break;
+      } else
+        factor_num += 2;
+    }
+  }
+  return factor_num;
 }

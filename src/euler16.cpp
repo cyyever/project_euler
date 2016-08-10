@@ -11,16 +11,15 @@
 using namespace my_math;
 using namespace std;
 
-int main(int argc,char **argv)
-{
-	uint64_t digit_sum;
-	string power_str;
+int main() {
+  uint64_t digit_sum;
+  string power_str;
 
-	power_str=static_cast<string>(power(2,1000));
+  power_str = static_cast<string>(power(2, 1000));
 
-	digit_sum=0;
-	for(auto it=power_str.begin();it!=power_str.end();it++)
-		digit_sum+=(*it)-'0';
-	cout<<digit_sum<<endl;
-	return 0;
+  digit_sum = 0;
+  for (auto it = power_str.begin(); it != power_str.end(); it++)
+    digit_sum += static_cast<unsigned char>(*it) - '0';
+  cout << digit_sum << endl;
+  return 0;
 }

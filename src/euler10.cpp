@@ -11,13 +11,12 @@
 using namespace my_math;
 using namespace std;
 
-int main(int argc,char **argv)
-{
-	auto primes=get_primes(2000000);
-	uint64_t sum=0;
+int main() {
+  auto primes = get_primes(2000000);
+  uint64_t sum = 0;
 
-	for(auto it=primes.begin();it!=primes.end();it++)
-		sum+=*it;
-	cout<<sum<<endl;
-	return 0;
+  for (auto it = primes.begin(); it != primes.end(); it++)
+    sum += *it;
+  cout << sum << endl;
+  return 0;
 }

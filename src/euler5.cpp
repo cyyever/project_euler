@@ -11,20 +11,18 @@
 using namespace my_math;
 using namespace std;
 
-int main(int argc,char **argv)
-{
-	uint64_t product,factor;
+int main() {
+  uint64_t product, factor;
 
-	auto primes=get_primes(20);
+  auto primes = get_primes(20);
 
-	product=1;
-	for(auto it=primes.begin();it!=primes.end();it++)
-	{
-		factor=*it;
-		while(factor*(*it)<=20)
-			factor*=(*it);
-		product*=factor;
-	}
-	cout<<product<<endl;
-	return 0;
+  product = 1;
+  for (auto it = primes.begin(); it != primes.end(); it++) {
+    factor = *it;
+    while (factor * (*it) <= 20)
+      factor *= (*it);
+    product *= factor;
+  }
+  cout << product << endl;
+  return 0;
 }

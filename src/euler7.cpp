@@ -11,10 +11,9 @@
 using namespace my_math;
 using namespace std;
 
-int main(int argc,char **argv)
-{
-	auto primes=get_primes(2000000);
+int main() {
+  auto primes = get_primes(2000000);
 
-	cout<<primes[10000]<<endl;
-	return 0;
+  cout << primes[10000] << endl;
+  return 0;
 }

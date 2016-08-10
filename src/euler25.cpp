@@ -10,24 +10,22 @@
 using namespace my_math;
 using namespace std;
 
-int main(int argc,char **argv)
-{
-	my_int a,b;
-	uint64_t i;
-	i=2;
-	a=1;
-	b=1;
-	while(1)
-	{
-		i++;
-		a+=b;
-		if(a.digit_num()>=1000)
-			break;
-		i++;
-		b+=a;
-		if(b.digit_num()>=1000)
-			break;
-	}
-	cout<<i<<endl;
-	return 0;
+int main() {
+  my_int a, b;
+  uint64_t i;
+  i = 2;
+  a = 1;
+  b = 1;
+  while (1) {
+    i++;
+    a += b;
+    if (a.digit_num() >= 1000)
+      break;
+    i++;
+    b += a;
+    if (b.digit_num() >= 1000)
+      break;
+  }
+  cout << i << endl;
+  return 0;
 }

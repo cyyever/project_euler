@@ -11,17 +11,14 @@
 using namespace my_math;
 using namespace std;
 
-int main(int argc,char **argv)
-{
-	auto primes=get_primes(1000000);
+int main() {
+  auto primes = get_primes(1000000);
 
-	for(auto it=--primes.end();;it--)
-	{
-		if(600851475143%(*it)==0)
-		{
-			cout<<*it<<endl;
-			break;
-		}
-	}
-	return 0;
+  for (auto it = --primes.end();; it--) {
+    if (600851475143 % (*it) == 0) {
+      cout << *it << endl;
+      break;
+    }
+  }
+  return 0;
 }

@@ -10,25 +10,23 @@
 using namespace my_math;
 using namespace std;
 
-int main(int argc,char **argv)
-{
-	my_rat root;
-	size_t i,count;
+int main() {
+  my_rat root;
+  size_t i, count;
 
-	//1 + 1/2 = 3/2
-	root=my_rat(3,2);
-	count=0;
-	for(i=2;i<=1000;i++)
-	{
-		//√ 2 = 1 + 1/(2 + 1/(2 + 1/(2 + ... ))) = 1.414213...
-		//我们迭代到下一个值
-		root+=1;
-		root=1/root;
-		root+=1;
-		if(root.numerator().digit_num()>root.denominator().digit_num())
-			count++;
-	}
+  // 1 + 1/2 = 3/2
+  root = my_rat(3, 2);
+  count = 0;
+  for (i = 2; i <= 1000; i++) {
+    //√ 2 = 1 + 1/(2 + 1/(2 + 1/(2 + ... ))) = 1.414213...
+    //我们迭代到下一个值
+    root += 1;
+    root = 1 / root;
+    root += 1;
+    if (root.numerator().digit_num() > root.denominator().digit_num())
+      count++;
+  }
 
-	cout<<count<<endl;
-	return 0;
+  cout << count << endl;
+  return 0;
 }

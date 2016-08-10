@@ -10,14 +10,13 @@
 using namespace my_math;
 using namespace std;
 
-int main(int argc,char **argv)
-{
-	uint64_t digit_sum;
-	string factorial_str=static_cast<string>(factorial(100));
+int main() {
+  uint64_t digit_sum;
+  string factorial_str = static_cast<string>(factorial(100));
 
-	digit_sum=0;
-	for(auto it=factorial_str.begin();it!=factorial_str.end();it++)
-		digit_sum+=(*it)-'0';
-	cout<<digit_sum<<endl;
-	return 0;
+  digit_sum = 0;
+  for (auto it = factorial_str.begin(); it != factorial_str.end(); it++)
+    digit_sum += (*it) - '0';
+  cout << digit_sum << endl;
+  return 0;
 }
