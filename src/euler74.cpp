@@ -22,6 +22,7 @@ uint64_t get_sum_of_factorials(uint64_t n) {
 
 uint64_t get_chain_len(std::vector<uint64_t> &chain) {
   auto last_sum = chain.back();
+  //如果已经算出来了
   if (chain_len[last_sum] >= 0) {
     auto last_chain_len = chain_len[last_sum];
     for (int j = chain.size() - 2, distance = 1; j >= 0; j--, distance++) {
@@ -30,6 +31,7 @@ uint64_t get_chain_len(std::vector<uint64_t> &chain) {
     return chain_len[chain[0]];
   }
 
+  //检测是否有碰到重复数字
   auto next_sum = get_sum_of_factorials(chain.back());
   for (int j = chain.size() - 1, distance = 1; j >= 0; j--, distance++) {
     if (chain[j] == next_sum) {
