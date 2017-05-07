@@ -1,6 +1,5 @@
 /*
  *	程序名：euler51.cpp
- *	作者：陈源源
  *	日期：2016-02-23
  *	功能：解决eulerproject 51题(https://projecteuler.net/problem=51)
  */

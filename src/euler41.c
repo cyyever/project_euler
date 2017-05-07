@@ -1,6 +1,5 @@
 /*
  *	程序名：euler41.c
- *	作者：陈源源
  *	日期：2015-07-18
  *	功能：解决eulerproject 41题(https://projecteuler.net/problem=41)
  */

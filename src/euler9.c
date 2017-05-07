@@ -1,6 +1,5 @@
 /*
  *	程序名：euler9.c
- *	作者：陈源源
  *	日期：2014-11-17
  *	功能：解决eulerproject 9题(https://projecteuler.net/problem=9)
  */

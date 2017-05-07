@@ -1,6 +1,5 @@
 /*
  *	程序名：euler17.c
- *	作者：陈源源
  *	日期：2017-03-05
  *	功能：解决eulerproject 17题(https://projecteuler.net/problem=17)
  */
@@ -38,14 +37,14 @@ int main(void) {
  *		对应的英文
  */
 static const char *get_number_word(uint64_t num) {
-  static char *words_0_20[] = {"zero",    "one",       "two",      "three",
-                               "four",    "five",      "six",      "seven",
-                               "eight",   "nine",      "ten",      "eleven",
-                               "twelve",  "thirteen",  "fourteen", "fifteen",
-                               "sixteen", "seventeen", "eighteen", "nineteen"};
-  static char *words_10_multiple[] = {"zero",   "ten",    "twenty", "thirty",
-                                      "forty",  "fifty",  "sixty",  "seventy",
-                                      "eighty", "ninety", "hundred"};
+  static const char *words_0_20[] = {
+      "zero",    "one",     "two",       "three",    "four",
+      "five",    "six",     "seven",     "eight",    "nine",
+      "ten",     "eleven",  "twelve",    "thirteen", "fourteen",
+      "fifteen", "sixteen", "seventeen", "eighteen", "nineteen"};
+  static const char *words_10_multiple[] = {
+      "zero",  "ten",     "twenty", "thirty", "forty",  "fifty",
+      "sixty", "seventy", "eighty", "ninety", "hundred"};
   static char word[128];
   char *p;
 

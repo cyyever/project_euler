@@ -37,8 +37,8 @@ int main() {
         string tmp;
         for (decltype(encrypted_codes.size()) i = 0; i < encrypted_codes.size();
              i++) {
-          plain_char =
-              encryption_key[i % 3] ^ ((unsigned char)encrypted_codes[i]);
+          plain_char = encryption_key[i % 3] ^
+                       (static_cast<unsigned char>(encrypted_codes[i]));
           tmp.push_back(plain_char);
         }
         if (tmp.find(" the ") == string::npos &&
@@ -56,7 +56,7 @@ int main() {
 
   code_sum = 0;
   for (decltype(plain_text[0].size()) i = 0; i < plain_text[0].size(); i++)
-    code_sum += ((unsigned char)plain_text[0][i]);
+    code_sum += (static_cast<unsigned char>(plain_text[0][i]));
   cout << code_sum;
   return 0;
 }

@@ -1,6 +1,5 @@
 /*
  *	程序名：euler35.c
- *	作者：陈源源
  *	日期：2014-11-20
  *	功能：解决eulerproject 35题(https://projecteuler.net/problem=35)
  */

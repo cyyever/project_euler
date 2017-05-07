@@ -1,6 +1,5 @@
 /*
  *	程序名：euler25.cpp
- *	作者：陈源源
  *	日期：2014-11-17
  *	功能：解决eulerproject 25题(https://projecteuler.net/problem=25)
  */

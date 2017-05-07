@@ -1,6 +1,5 @@
 /*
  *	程序名：euler8.c
- *	作者：陈源源
  *	日期：2014-11-18
  *	功能：解决eulerproject 8题(https://projecteuler.net/problem=8)
  */

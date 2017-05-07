@@ -1,6 +1,5 @@
 /*
  *	程序名：euler108.c
- *	作者：陈源源
  *	日期：2015-04-20
  *	功能：解决eulerproject 108题(https://projecteuler.net/problem=108)
  */

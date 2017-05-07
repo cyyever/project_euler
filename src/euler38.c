@@ -1,6 +1,5 @@
 /*
  *	程序名：euler38.c
- *	作者：陈源源
  *	日期：2015-07-13
  *	功能：解决eulerproject 38题(https://projecteuler.net/problem=38)
  */

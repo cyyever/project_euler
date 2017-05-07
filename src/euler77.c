@@ -1,6 +1,5 @@
 /*
  *	程序名：euler77.c
- *	作者：陈源源
  *	日期：2015-09-18
  *	功能：解决eulerproject 77题(https://projecteuler.net/problem=77)
  */

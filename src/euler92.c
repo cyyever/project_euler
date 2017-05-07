@@ -1,6 +1,5 @@
 /*
  *	程序名：euler92.c
- *	作者：陈源源
  *	日期：2015-04-26
  *	功能：解决eulerproject 92题(https://projecteuler.net/problem=92)
  */

@@ -1,6 +1,5 @@
 /*
  *	程序名：euler33.cpp
- *	作者：陈源源
  *	日期：2015-07-17
  *	功能：解决eulerproject 33题(https://projecteuler.net/problem=33)
  */

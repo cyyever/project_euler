@@ -1,6 +1,5 @@
 /*
  *	程序名：euler18.c
- *	作者：陈源源
  *	日期：2015-04-12
  *	功能：解决eulerproject 18题(https://projecteuler.net/problem=18)
  */

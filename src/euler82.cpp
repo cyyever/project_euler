@@ -1,6 +1,5 @@
 /*
  *	程序名：euler82.cpp
- *	作者：陈源源
  *	日期：2015-04-27
  *	功能：解决eulerproject 82题(https://projecteuler.net/problem=82)
  */
@@ -11,8 +10,8 @@
 
 using namespace std;
 
-uint64_t path_sum[80][80];
-uint64_t matrix[80][80];
+static uint64_t path_sum[80][80];
+static uint64_t matrix[80][80];
 
 static void find_min_path_sum(size_t matrix_row_num, size_t matrix_col_num);
 

@@ -1,6 +1,5 @@
 /*
  *	程序名：euler23.c
- *	作者：陈源源
  *	日期：2015-04-12
  *	功能：解决eulerproject 23题(https://projecteuler.net/problem=23)
  */

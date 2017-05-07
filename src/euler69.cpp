@@ -1,6 +1,5 @@
 /*
  *	程序名：euler69.cpp
- *	作者：陈源源
  *	日期：2017-05-04
  *	功能：解决eulerproject 69题(https://projecteuler.net/problem=69)
  */

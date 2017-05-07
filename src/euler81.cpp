@@ -1,6 +1,5 @@
 /*
  *	程序名：euler81.cpp
- *	作者：陈源源
  *	日期：2015-04-27
  *	功能：解决eulerproject 81题(https://projecteuler.net/problem=81)
  */

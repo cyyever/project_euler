@@ -1,6 +1,5 @@
 /*
  *	程序名：euler83.cpp
- *	作者：陈源源
  *	日期：2016-04-14
  *	功能：解决eulerproject 83题(https://projecteuler.net/problem=83)
  */
@@ -11,8 +10,8 @@
 
 using namespace std;
 
-uint64_t matrix[80][80];
-uint64_t path_sum[80][80];
+static uint64_t matrix[80][80];
+static uint64_t path_sum[80][80];
 
 struct gird_coordinate {
   size_t x;

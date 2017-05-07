@@ -1,6 +1,5 @@
 /*
  *	程序名：euler111.cpp
- *	作者：陈源源
  *	日期：2016-02-28
  *	功能：解决eulerproject 111题(https://projecteuler.net/problem=111)
  */
