@@ -28,16 +28,19 @@ int main(void) {
     size_t m_cnt = 0;
     size_t n_cnt = 0;
     size_t m_subtract_n_cnt = 0;
-    size_t a = i;
+    size_t a = M;
+    size_t b = N;
+    size_t c = M-N;
     while (true) {
-      auto res = M / a;
-      if (res == 0) {
+      a/=i;
+      if (a== 0) {
         break;
       }
-      m_cnt += res;
-      n_cnt += N / a;
-      m_subtract_n_cnt += (M - N) / a;
-      a *= i;
+      b/=i;
+      c/=i;
+      m_cnt +=a;
+      n_cnt +=b;
+      m_subtract_n_cnt += c;
     }
     sum += (m_cnt - n_cnt - m_subtract_n_cnt) * i;
   }
