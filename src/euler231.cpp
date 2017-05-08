@@ -16,7 +16,6 @@ int main(void) {
   std::vector<bool> is_prime(M + 1, true);
 
   uint64_t sum = 0;
-  //参看https://en.wikipedia.org/wiki/Euler%27s_totient_function 获取函数公式
 
   for (size_t i = 2; i <= M; i++) {
     if (!is_prime[i]) {
