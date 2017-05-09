@@ -4,6 +4,7 @@
  *	日期：2016-02-11
  *	功能：解决eulerproject 22题(https://projecteuler.net/problem=22)
  */
+#define _DEFAULT_SOURCE
 #include <inttypes.h>
 #include <stdio.h>
 #include <stdlib.h>

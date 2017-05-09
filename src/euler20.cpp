@@ -14,8 +14,8 @@ int main() {
   string factorial_str = static_cast<string>(factorial(100));
 
   digit_sum = 0;
-  for (auto it = factorial_str.begin(); it != factorial_str.end(); it++)
-    digit_sum += (*it) - '0';
+  for (auto const c : factorial_str)
+    digit_sum += static_cast<uint64_t>(c - '0');
   cout << digit_sum << endl;
   return 0;
 }
