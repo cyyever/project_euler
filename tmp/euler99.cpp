@@ -12,15 +12,15 @@
 using namespace std;
 using namespace my_math;
 
-struct p099_number {
+static struct p099_number {
   uint64_t base;
   uint64_t exp;
   my_rat log_base;
   uint64_t line_num;
 } number, max_number;
 
-uint64_t cur_line_num;
-uint64_t cur_log_digit_num;
+static uint64_t cur_line_num;
+static uint64_t cur_log_digit_num;
 my_rat delta(1, 1);
 
 istream &operator>>(istream &is, p099_number &number);
