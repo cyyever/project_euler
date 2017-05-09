@@ -20,8 +20,8 @@ int main() {
     for (b = 2, power_int = power(a, b); b < 100; b++, power_int *= a) {
       digit_sum = 0;
       power_str = static_cast<string>(power_int);
-      for (auto it = power_str.begin(); it != power_str.end(); it++)
-        digit_sum += (*it) - '0';
+      for (auto const c : power_str)
+        digit_sum += static_cast<uint64_t>(c - '0');
       if (digit_sum > max_digit_sum)
         max_digit_sum = digit_sum;
     }
