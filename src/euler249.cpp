@@ -6,8 +6,6 @@
 
 #include <algorithm>
 #include <iostream>
-#include <map>
-#include <set>
 #include <vector>
 
 int main(void) {
@@ -33,28 +31,23 @@ int main(void) {
   }
 
   for (auto const &prime : primes) {
-  std::vector<uint64_t> tmp(prime_sum_limit + 1, 0);
-
-    for(size_t i=1;i<prime_sum_limit-prime;i++) {
-      tmp[i+prime]=subset_cnts[i];
-      if (is_prime[i+prime]) {
-        cnt += subset_cnts[i];
-        if(cnt>=modulus) {
-          cnt-=modulus;
+    for (size_t i = prime_sum_limit - 1; i >= prime; i--) {
+      auto prev_cnt = subset_cnts[i - prime];
+      subset_cnts[i] += prev_cnt;
+      if (subset_cnts[i] >= modulus) {
+        subset_cnts[i] -= modulus;
+      }
+      if (is_prime[i]) {
+        cnt += prev_cnt;
+        if (cnt >= modulus) {
+          cnt -= modulus;
         }
       }
     }
-    for(size_t i=prime+1;i<prime_sum_limit;i++) {
-      //auto prev_cnt=subset_cnts[i-prime];
-      subset_cnts[i]+=tmp[i];
-        if(subset_cnts[i]>=modulus) {
-          subset_cnts[i] -=modulus;
-        }
-    }
     subset_cnts[prime]++;
     cnt++;
-    if(cnt>=modulus) {
-          cnt-=modulus;
+    if (cnt >= modulus) {
+      cnt -= modulus;
     }
   }
 
