@@ -5,7 +5,7 @@
  */
 
 #include <iostream>
-#include <map>
+#include <array>
 #include <vector>
 
 int main(void) {
@@ -18,18 +18,14 @@ int main(void) {
   for (uint64_t i = 51; i <= 100; i++) {
     max_sum += i * i;
   }
-
-  std::vector<std::map<size_t, size_t>> subset_sums(max_sum + 1);
+  std::vector<std::array<size_t,51>> subset_sums(max_sum + 1);
 
   for (size_t i = 1; i <= 100; i++) {
     auto square = i * i;
 
     for (size_t j = max_sum; j >= square; j--) {
-      for (auto const it : subset_sums[j - square]) {
-        if (it.first == 50) {
-          continue;
-        }
-        subset_sums[j][it.first + 1] += it.second;
+      for(size_t k=0;k<=49;k++) {
+	subset_sums[j][k+1] += subset_sums[j-square][k];
       }
     }
     subset_sums[square][1]++;
@@ -37,13 +33,10 @@ int main(void) {
 
   uint64_t unique_sum_sum = 0;
   for (size_t i = min_sum; i <= max_sum; i++) {
-
     if (subset_sums[i][50] == 1) {
-
       unique_sum_sum += i;
     }
   }
-
   std::cout << unique_sum_sum << std::endl;
   return 0;
 }
