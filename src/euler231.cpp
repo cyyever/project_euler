@@ -30,16 +30,16 @@ int main(void) {
     size_t m_subtract_n_cnt = 0;
     size_t a = M;
     size_t b = N;
-    size_t c = M-N;
+    size_t c = M - N;
     while (true) {
-      a/=i;
-      if (a== 0) {
+      a /= i;
+      if (a == 0) {
         break;
       }
-      b/=i;
-      c/=i;
-      m_cnt +=a;
-      n_cnt +=b;
+      b /= i;
+      c /= i;
+      m_cnt += a;
+      n_cnt += b;
       m_subtract_n_cnt += c;
     }
     sum += (m_cnt - n_cnt - m_subtract_n_cnt) * i;
