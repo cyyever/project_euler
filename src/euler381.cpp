@@ -31,21 +31,33 @@ int main(void) {
     uint64_t sum = 0;
     auto prime = i;
 
-    for (uint64_t k = prime - 2; k >= prime - 4; k--) {
-      uint64_t tmp = 0;
-      for (uint64_t j = 1; j < prime; j++) {
-        tmp += k;
-        if (tmp >= prime) {
-          tmp -= prime;
-        }
-        if (tmp == last_mod) {
-          last_mod = j;
-          sum += j;
-          break;
-        }
-      }
+    //计算x*(-2) mod(p) = 1
+    last_mod = prime / 2;
+    sum += last_mod;
+
+    //计算x*(-3) mod(p) = last_mod
+
+    if (prime % 3 == 1) {
+      last_mod = ((prime / 3) * last_mod) % prime;
+    } else { //==2
+      last_mod = ((prime / 3 + 1) * (prime - last_mod)) % prime;
     }
-    total_sum += (sum % prime);
+    sum += last_mod;
+
+    //计算x*(-4) mod(p) = last_mod
+    auto tmp = prime % 4;
+
+    if (tmp == 1) {
+      last_mod = ((prime / 4) * last_mod) % prime;
+    } else { //==3
+      last_mod = ((prime / 4 + 1) * (prime - last_mod)) % prime;
+    }
+
+    sum += last_mod;
+    while (sum >= prime) {
+      sum -= prime;
+    }
+    total_sum += sum;
   }
 
   std::cout << total_sum << std::endl;
