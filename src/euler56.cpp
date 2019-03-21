@@ -5,7 +5,7 @@
  */
 
 #include <iostream>
-#include <my_math.h>
+#include <cyy/math/my_math.h>
 
 using namespace my_math;
 using namespace std;
