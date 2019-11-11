@@ -4,8 +4,8 @@
  *	功能：解决eulerproject 51题(https://projecteuler.net/problem=51)
  */
 
-#include <iostream>
 #include <cyy/math/my_math.h>
+#include <iostream>
 #include <string>
 
 using namespace my_math;

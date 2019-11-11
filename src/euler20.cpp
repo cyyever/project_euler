@@ -3,8 +3,8 @@
  *	日期：2014-11-17
  *	功能：解决eulerproject 20题(https://projecteuler.net/problem=20)
  */
-#include <iostream>
 #include <cyy/math/my_math.h>
+#include <iostream>
 
 using namespace my_math;
 using namespace std;

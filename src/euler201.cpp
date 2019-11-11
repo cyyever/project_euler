@@ -4,8 +4,8 @@
  *	功能：解决eulerproject 201题(https://projecteuler.net/problem=201)
  */
 
-#include <iostream>
 #include <array>
+#include <iostream>
 #include <vector>
 
 int main(void) {
@@ -18,14 +18,14 @@ int main(void) {
   for (uint64_t i = 51; i <= 100; i++) {
     max_sum += i * i;
   }
-  std::vector<std::array<size_t,51>> subset_sums(max_sum + 1);
+  std::vector<std::array<size_t, 51>> subset_sums(max_sum + 1);
 
   for (size_t i = 1; i <= 100; i++) {
     auto square = i * i;
 
     for (size_t j = max_sum; j >= square; j--) {
-      for(size_t k=0;k<=49;k++) {
-	subset_sums[j][k+1] += subset_sums[j-square][k];
+      for (size_t k = 0; k <= 49; k++) {
+        subset_sums[j][k + 1] += subset_sums[j - square][k];
       }
     }
     subset_sums[square][1]++;

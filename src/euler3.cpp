@@ -4,20 +4,27 @@
  *	功能：解决eulerproject 3题(https://projecteuler.net/problem=3)
  */
 
+#include <cyy/math/prime.hpp>
 #include <iostream>
-#include <cyy/math/my_math.h>
+#include <range/v3/view.hpp>
 
-using namespace my_math;
 using namespace std;
 
 int main() {
-  auto primes = get_primes(1000000);
-
-  for (auto it = --primes.end();; it--) {
-    if (600851475143 % (*it) == 0) {
-      cout << *it << endl;
-      break;
+  uint64_t max_prime = 0;
+  uint64_t num = 600851475143;
+  for (auto prime : cyy::math::primes().all()) {
+    if (num % prime == 0) {
+      max_prime = prime;
+      while (num % prime == 0) {
+        num /= prime;
+        if (num == 1) {
+          goto end;
+        }
+      }
     }
   }
+end:
+  cout << max_prime << endl;
   return 0;
 }

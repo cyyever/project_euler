@@ -3,26 +3,24 @@
  *	日期：2014-11-17
  *	功能：解决eulerproject 25题(https://projecteuler.net/problem=25)
  */
+#include <cyy/math/integer.hpp>
 #include <iostream>
-#include <cyy/math/my_math.h>
 
-using namespace my_math;
 using namespace std;
 
 int main() {
-  my_int a, b;
-  uint64_t i;
-  i = 2;
-  a = 1;
-  b = 1;
-  while (1) {
+  cyy::math::integer a = 1, b = 1;
+  uint64_t i = 2;
+  cyy::math::integer threshold(std::string(999, '9'));
+
+  while (true) {
     i++;
     a += b;
-    if (a.digit_num() >= 1000)
+    if (a > threshold)
       break;
     i++;
     b += a;
-    if (b.digit_num() >= 1000)
+    if (b > threshold)
       break;
   }
   cout << i << endl;

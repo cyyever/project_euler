@@ -58,7 +58,7 @@ int main(void) {
         tmp /= m;
       }
       assert(power <= i);
-      F[i] *= get_C_mod_N(power + N - 1,power);
+      F[i] *= get_C_mod_N(power + N - 1, power);
       if (F[i] >= 1234567891) {
         F[i] %= 1234567891;
       }
@@ -67,7 +67,7 @@ int main(void) {
 
   uint64_t sum = 0;
   for (size_t i = 1; i <= M; i++) {
-  //  std::cout<<"F["<<i<<"]="<<F[i]<<std::endl;
+    //  std::cout<<"F["<<i<<"]="<<F[i]<<std::endl;
     sum += F[i];
     if (sum >= 1234567891) {
       sum -= 1234567891;
@@ -83,13 +83,13 @@ uint64_t get_C_mod_N(uint64_t a, uint64_t b) {
   static std::map<std::pair<size_t, size_t>, uint64_t> c_map;
   static std::vector<uint64_t> numerator;
 
-  assert(a>=b);
-  if(b==0) {
+  assert(a >= b);
+  if (b == 0) {
     return 1;
-  } else if(b==1) {
+  } else if (b == 1) {
     return a;
   }
-  assert(a>=b);
+  assert(a >= b);
 
   auto &res = c_map[{a, b}];
   if (res != 0) {
@@ -99,7 +99,7 @@ uint64_t get_C_mod_N(uint64_t a, uint64_t b) {
   numerator.resize(b);
 
   for (size_t i = 0; i < b; i++) {
-    numerator[i] = a-b+i+1;
+    numerator[i] = a - b + i + 1;
   }
 
   for (size_t i = 2; i <= b; i++) {
@@ -112,11 +112,11 @@ uint64_t get_C_mod_N(uint64_t a, uint64_t b) {
       power_cnt += b / tmp;
       tmp *= i;
     }
-    auto idx = (i - (a-b+1) % i);
+    auto idx = (i - (a - b + 1) % i);
     if (idx == i) {
       idx -= i;
     }
-    //assert(numerator[idx] % i == 0);
+    // assert(numerator[idx] % i == 0);
     /*
     std::cout<<"b="<<b<<" idx="<<idx<<std::endl;
     std::cout<<"power_cnt="<<power_cnt<<std::endl;
@@ -124,19 +124,19 @@ uint64_t get_C_mod_N(uint64_t a, uint64_t b) {
     std::cout<<"i="<<i<<std::endl;
     std::cout<<"numerator[0]="<<numerator[0]<<std::endl;
     */
-    assert(idx<b);
+    assert(idx < b);
     while (power_cnt > 0) {
-     // std::cout<<"numerator[idx]="<<numerator[idx]<<std::endl;
-      assert(idx<b);
+      // std::cout<<"numerator[idx]="<<numerator[idx]<<std::endl;
+      assert(idx < b);
       while (numerator[idx] % i == 0) {
         numerator[idx] /= i;
         power_cnt--;
-	if(power_cnt==0) {
-	  break;
-	}
+        if (power_cnt == 0) {
+          break;
+        }
       }
       idx += i;
-      //std::cout<<"b="<<b<<" idx="<<idx<<std::endl;
+      // std::cout<<"b="<<b<<" idx="<<idx<<std::endl;
     }
   }
 

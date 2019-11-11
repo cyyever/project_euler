@@ -4,21 +4,19 @@
  *	功能：解决eulerproject 16题(https://projecteuler.net/problem=16)
  */
 
+#include <cyy/math/integer.hpp>
 #include <iostream>
-#include <cyy/math/my_math.h>
 
-using namespace my_math;
 using namespace std;
 
 int main() {
-  uint64_t digit_sum;
-  string power_str;
-
-  power_str = static_cast<string>(power(2, 1000));
-
-  digit_sum = 0;
-  for (auto it = power_str.begin(); it != power_str.end(); it++)
-    digit_sum += static_cast<unsigned char>(*it) - '0';
+  cyy::math::integer a = 1;
+  a.multiply_2(1000);
+  uint64_t digit_sum = 0;
+  while (!a.is_zero()) {
+    digit_sum += a % 10;
+    a /= 10;
+  }
   cout << digit_sum << endl;
   return 0;
 }

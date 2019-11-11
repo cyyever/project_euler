@@ -4,8 +4,8 @@
  *	日期：2016-03-06
  *	功能：解决eulerproject 58题(https://projecteuler.net/problem=58)
  */
-#include <iostream>
 #include <cyy/math/my_math.h>
+#include <iostream>
 
 using namespace my_math;
 using namespace std;
