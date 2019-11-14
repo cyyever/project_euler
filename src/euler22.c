@@ -10,7 +10,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <sys/types.h>
-#include <unistd.h>
+//#include <unistd.h>
 
 #define N 5163
 static int cmpstringp(const void *p1, const void *p2);

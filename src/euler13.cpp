@@ -4,10 +4,9 @@
  *	功能：解决eulerproject 13题(https://projecteuler.net/problem=13)
  */
 
-#include <cyy/math/my_math.h>
+#include <cyy/math/integer.hpp>
 #include <iostream>
 
-using namespace my_math;
 using namespace std;
 
 int main() {
@@ -114,11 +113,11 @@ int main() {
       "20849603980134001723930671666823555245252804609722",
       "53503534226472524250874054075591789781264330331690",
   };
-  my_int sum = 0;
+  cyy::math::integer sum = 0;
 
   for (i = 0; i < 100; i++)
-    sum += my_int(nums[i]);
+    sum += cyy::math::integer(nums[i]);
 
-  cout << static_cast<string>(sum).substr(0, 10) << endl;
+  cout << sum.to_string().substr(0, 10) << endl;
   return 0;
 }
