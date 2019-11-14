@@ -4,18 +4,21 @@
  *	功能：解决eulerproject 10题(https://projecteuler.net/problem=10)
  */
 
-#include <cyy/math/my_math.h>
+#include <cyy/math/prime.hpp>
 #include <iostream>
 
-using namespace my_math;
 using namespace std;
 
 int main() {
-  auto primes = get_primes(2000000);
   uint64_t sum = 0;
 
-  for (auto it = primes.begin(); it != primes.end(); it++)
-    sum += *it;
+  for (auto prime:cyy::math::primes().all()) {
+	  if(prime>=2000000) {
+		  break;
+	  }
+	  printf("%d\n",(int)prime);
+	  sum += prime;
+  }
   cout << sum << endl;
   return 0;
 }
