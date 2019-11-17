@@ -4,15 +4,13 @@
  *	功能：解决eulerproject 7题(https://projecteuler.net/problem=7)
  */
 
-#include <cyy/math/my_math.h>
+#include <cyy/math/prime.hpp>
 #include <iostream>
 
-using namespace my_math;
 using namespace std;
 
 int main() {
-  auto primes = get_primes(2000000);
 
-  cout << primes[10000] << endl;
+  cout << cyy::math::primes().at(10000)<< endl;
   return 0;
 }
