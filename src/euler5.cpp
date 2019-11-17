@@ -4,22 +4,21 @@
  *	功能：解决eulerproject 5题(https://projecteuler.net/problem=5)
  */
 
-#include <cyy/math/my_math.h>
+#include <cyy/math/prime.hpp>
 #include <iostream>
 
-using namespace my_math;
 using namespace std;
 
 int main() {
-  uint64_t product, factor;
 
-  auto primes = get_primes(20);
+  auto primes =cyy::math::primes();
 
-  product = 1;
-  for (auto it = primes.begin(); it != primes.end(); it++) {
-    factor = *it;
-    while (factor * (*it) <= 20)
-      factor *= (*it);
+  uint64_t product = 1;
+  for (auto prime:primes.till(20)) {
+
+   auto factor = prime;
+    while (factor * prime <= 20)
+      factor *= prime;
     product *= factor;
   }
   cout << product << endl;
