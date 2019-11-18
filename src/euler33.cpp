@@ -4,15 +4,14 @@
  *	功能：解决eulerproject 33题(https://projecteuler.net/problem=33)
  */
 
-#include <cyy/math/my_math.h>
+#include <cyy/math/rational.hpp>
 #include <iostream>
 
-using namespace my_math;
 using namespace std;
 
 int main() {
   int p, q, a, b, c, d;
-  my_rat res(1, 1);
+  cyy::math::rational res(1, 1);
 
   for (p = 11, a = 1, b = 1; p <= 98; p++, b++) {
     if (p % 10 == 0) {
@@ -29,25 +28,26 @@ int main() {
       // p/q=b/d
       if (a == c) {
         if (p * d == b * q)
-          res *= my_rat(b, d);
+          res *= cyy::math::rational(b, d);
       }
       // p/q=b/c
       else if (a == d) {
         if (p * c == b * q)
-          res *= my_rat(b, c);
+          res *= cyy::math::rational(b, c);
       }
       // p/q=a/d
       else if (b == c) {
         if (p * d == a * q)
-          res *= my_rat(a, d);
+          res *= cyy::math::rational(a, d);
       }
       // p/q=a/c
       else if (b == d) {
         if (p * c == a * q)
-          res *= my_rat(a, c);
+          res *= cyy::math::rational(a, c);
       }
     }
   }
+
   cout << res.simplify().denominator() << endl;
   return 0;
 }
