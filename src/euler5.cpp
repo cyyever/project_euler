@@ -11,12 +11,12 @@ using namespace std;
 
 int main() {
 
-  auto primes =cyy::math::primes();
+  auto primes = cyy::math::primes();
 
   uint64_t product = 1;
-  for (auto prime:primes.till(20)) {
+  for (auto prime : primes.till(20)) {
 
-   auto factor = prime;
+    auto factor = prime;
     while (factor * prime <= 20)
       factor *= prime;
     product *= factor;

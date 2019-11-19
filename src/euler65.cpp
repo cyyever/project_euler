@@ -32,7 +32,7 @@ int main() {
 
   //可以证明n和d是互质的，所以没必要简化分数
   size_t sum = 0;
-  for (const auto &c :n.to_string()) {
+  for (const auto &c : n.to_string()) {
     sum += c - '0';
   }
 

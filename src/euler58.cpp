@@ -10,16 +10,22 @@
 using namespace std;
 
 int main() {
-  uint64_t layer_num, side_length;
-  size_t prime_cnt, num, i, num_cnt;
+  uint64_t side_length;
+  size_t prime_cnt = 0, num, i, num_cnt;
+  auto prime_colloction = cyy::math::primes();
+  auto all = prime_colloction.all();
+  auto it = all.begin();
 
-  for (layer_num = 2, side_length = 3, num_cnt = 5;;
-       layer_num++, side_length += 2, num_cnt += 4) {
+  for (side_length = 3, num_cnt = 5;; side_length += 2, num_cnt += 4) {
     num = side_length * side_length;
+    num -= 3 * (side_length - 1);
     for (i = 0; i < 3; i++) {
-      num -= (side_length - 1);
-      if (cyy::math::primes().has(num))
+      while (*it < num) {
+        it++;
+      }
+      if (*it == num)
         prime_cnt++;
+      num += side_length - 1;
     }
     if (prime_cnt * 10 < num_cnt)
       break;

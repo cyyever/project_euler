@@ -10,10 +10,10 @@ using namespace std;
 
 int main() {
   uint64_t digit_sum;
-  string factorial_str = cyy::math::factorial(100).to_string();
 
   digit_sum = 0;
-  for (auto const c : factorial_str)
+  for (auto const c :
+       cyy::math::factorial(static_cast<uint32_t>(100)).to_string())
     digit_sum += static_cast<uint64_t>(c - '0');
   cout << digit_sum << endl;
   return 0;

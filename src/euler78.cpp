@@ -6,15 +6,14 @@
 
 #include <inttypes.h>
 #include <iostream>
-#include <vector>
 #include <string.h>
+#include <vector>
 
 #define N 60000
 
 int main(void) {
   size_t i, j;
-  std::vector<uint32_t> sum_nums(N+1,1);
-
+  std::vector<uint32_t> sum_nums(N + 1, 1);
 
   //把N个硬币分成不同的堆的次数相当于(1/1-x)(1/1-x^2)...(1/1-x^N)的生成函数对应的x^N的系数
   for (i = 2; i <= N; i++) {
@@ -22,7 +21,7 @@ int main(void) {
     if (sum_nums[i] >= 1000000)
       sum_nums[i] -= 1000000;
     if (sum_nums[i] == 0) {
-      std::cout<<i<<std::endl;
+      std::cout << i << std::endl;
       break;
     }
     for (j = i + 1; j <= N; j++) {

@@ -12,13 +12,13 @@ using namespace std;
 int main() {
   uint64_t sum = 0;
 
-  auto primes=cyy::math::primes();
+  auto primes = cyy::math::primes();
 
-  for (auto prime:primes.all()) {
-	  if(prime>=2000000) {
-		  break;
-	  }
-	  sum += prime;
+  for (auto prime : primes.all()) {
+    if (prime >= 2000000) {
+      break;
+    }
+    sum += prime;
   }
   cout << sum << endl;
   return 0;

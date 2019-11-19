@@ -11,6 +11,6 @@ using namespace std;
 
 int main() {
 
-  cout << cyy::math::primes().at(10000)<< endl;
+  cout << cyy::math::primes().at(10000) << endl;
   return 0;
 }
