@@ -7,23 +7,36 @@
 #include <cyy/math/all.hpp>
 #include <iostream>
 
-using namespace my_math;
 using namespace std;
 
 int main() {
-  uint64_t a, b, digit_sum, max_digit_sum;
-  my_int power_int;
-  string power_str;
+  uint64_t  max_digit_sum;
+  uint32_t a, b;
+  cyy::math::integer power;
 
   max_digit_sum = 0;
-  for (a = 2; a < 100; a++) {
-    for (b = 2, power_int = power(a, b); b < 100; b++, power_int *= a) {
-      digit_sum = 0;
-      power_str = static_cast<string>(power_int);
-      for (auto const c : power_str)
+  cyy::math::integer threshold=0;
+  uint64_t last_nine_num=0;
+  for (a = 99; a >=2; a--) {
+    if(cyy::math::exponent(a, 99)<threshold) {
+        break;
+    }
+    for (b = 2, power = cyy::math::exponent(a, b); b < 100; b++, power *= a) {
+      if(power<threshold) {
+        continue;
+      }
+      uint64_t digit_sum = 0;
+      for (auto const c : power.to_string())
         digit_sum += static_cast<uint64_t>(c - '0');
-      if (digit_sum > max_digit_sum)
+      if (digit_sum > max_digit_sum) {
         max_digit_sum = digit_sum;
+        auto nine_num=max_digit_sum/9;
+        while(last_nine_num<nine_num) {
+          threshold*=10;
+          threshold+=9;
+          last_nine_num++;
+        }
+      }
     }
   }
   cout << max_digit_sum << endl;
