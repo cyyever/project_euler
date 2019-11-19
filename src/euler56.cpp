@@ -10,21 +10,18 @@
 using namespace std;
 
 int main() {
-  uint64_t  max_digit_sum;
+  uint64_t  max_digit_sum=0;
   uint32_t a, b;
   cyy::math::integer power;
-
-  max_digit_sum = 0;
   cyy::math::integer threshold=0;
   uint64_t last_nine_num=0;
+  uint32_t last_b=2;
   for (a = 99; a >=2; a--) {
-    if(cyy::math::exponent(a, 99)<threshold) {
-        break;
-    }
-    for (b = 2, power = cyy::math::exponent(a, b); b < 100; b++, power *= a) {
+    for (b = last_b, power = cyy::math::exponent(a, b); b < 100; b++, power *= a) {
       if(power<threshold) {
+        last_b=b+1;
         continue;
-      }
+      } 
       uint64_t digit_sum = 0;
       for (auto const c : power.to_string())
         digit_sum += static_cast<uint64_t>(c - '0');
