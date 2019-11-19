@@ -4,7 +4,7 @@
  *	功能：解决eulerproject 10题(https://projecteuler.net/problem=10)
  */
 
-#include <cyy/math/prime.hpp>
+#include <cyy/math/all.hpp>
 #include <iostream>
 
 using namespace std;
@@ -12,11 +12,12 @@ using namespace std;
 int main() {
   uint64_t sum = 0;
 
-  for (auto prime:cyy::math::primes().all()) {
+  auto primes=cyy::math::primes();
+
+  for (auto prime:primes.all()) {
 	  if(prime>=2000000) {
 		  break;
 	  }
-	  printf("%d\n",(int)prime);
 	  sum += prime;
   }
   cout << sum << endl;

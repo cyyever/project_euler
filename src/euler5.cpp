@@ -4,7 +4,7 @@
  *	功能：解决eulerproject 5题(https://projecteuler.net/problem=5)
  */
 
-#include <cyy/math/prime.hpp>
+#include <cyy/math/all.hpp>
 #include <iostream>
 
 using namespace std;

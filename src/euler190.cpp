@@ -5,19 +5,19 @@
  */
 
 #include <algorithm>
-#include <cyy/math/my_math.h>
+#include <cyy/math/rational.hpp>
+#include <cyy/math/all.hpp>
 #include <iostream>
 #include <utility>
 
-using namespace my_math;
 
 int main(void) {
   constexpr size_t max_m = 15;
-  my_rat cof[max_m + 1];
+  cyy::math::rational cof[max_m + 1];
 
-  cof[1] = my_rat(1, 1);
+  cof[1] =cyy::math::rational (1, 1);
 
-  my_int sum;
+  cyy::math::integer sum;
   for (size_t i = 2; i <= max_m; i++) {
 
     //令x[1]+..+x[i] = y
@@ -35,10 +35,10 @@ int main(void) {
     // Pi=cof[i-1]((i-1)/(i+1)y)*2^i*y^i/((i+1)^i)
 
     cof[i] =
-        my_rat(power(i - 1, (i - 1) * i / 2), power(i + 1, (i - 1) * i / 2)) *
-        cof[i - 1] * my_rat((uint64_t)(1ULL << i), power(i + 1, i));
+        cyy::math::rational(cyy::math::exponent(i - 1, (i - 1) * i / 2),cyy::math::exponent(i + 1, (i - 1) * i / 2)) *
+        cof[i - 1] *cyy::math::rational(cyy::math::integer(1ULL << i),cyy::math::exponent(i + 1, i));
     auto P =
-        cof[i].numerator() * power(i, (i + 1) * i / 2) / cof[i].denominator();
+        cof[i].numerator() *cyy::math::exponent(i, (i + 1) * i / 2) / cof[i].denominator();
     sum += P;
   }
   std::cout << sum << std::endl;

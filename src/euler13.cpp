@@ -4,7 +4,7 @@
  *	功能：解决eulerproject 13题(https://projecteuler.net/problem=13)
  */
 
-#include <cyy/math/integer.hpp>
+#include <cyy/math/all.hpp>
 #include <iostream>
 
 using namespace std;

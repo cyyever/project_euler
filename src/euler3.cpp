@@ -4,7 +4,7 @@
  *	功能：解决eulerproject 3题(https://projecteuler.net/problem=3)
  */
 
-#include <cyy/math/prime.hpp>
+#include <cyy/math/all.hpp>
 #include <iostream>
 #include <range/v3/view.hpp>
 

@@ -4,7 +4,7 @@
  *	功能：解决eulerproject 51题(https://projecteuler.net/problem=51)
  */
 
-#include <cyy/math/my_math.h>
+#include <cyy/math/all.hpp>
 #include <iostream>
 #include <string>
 
