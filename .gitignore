@@ -32,3 +32,4 @@ src/euler*[0-9]
 *.exe
 *.out
 *.app
+*PVS*
