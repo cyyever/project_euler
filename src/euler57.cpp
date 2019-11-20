@@ -7,23 +7,24 @@
 #include <cyy/math/all.hpp>
 #include <iostream>
 
-using namespace my_math;
 using namespace std;
 
 int main() {
-  my_rat root;
+  cyy::math::rational root;
   size_t i, count;
 
   // 1 + 1/2 = 3/2
-  root = my_rat(3, 2);
+  root = cyy::math::rational(3, 2);
   count = 0;
   for (i = 2; i <= 1000; i++) {
     //√ 2 = 1 + 1/(2 + 1/(2 + 1/(2 + ... ))) = 1.414213...
     //我们迭代到下一个值
     root += 1;
-    root = 1 / root;
+    root = root.reciprocal();
     root += 1;
-    if (root.numerator().digit_num() > root.denominator().digit_num())
+
+    if (root.numerator().to_string().size() >
+        root.denominator().to_string().size())
       count++;
   }
 
