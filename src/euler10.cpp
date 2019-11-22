@@ -12,9 +12,7 @@ using namespace std;
 int main() {
   uint64_t sum = 0;
 
-  auto primes = cyy::math::primes();
-
-  for (auto prime : primes.all()) {
+  for (auto prime : cyy::math::primes()) {
     if (prime >= 2000000) {
       break;
     }
