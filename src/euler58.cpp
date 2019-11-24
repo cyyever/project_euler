@@ -1,8 +1,8 @@
 /*
- *	³ÌĞòÃû£ºeuler58.cpp
- *	×÷Õß£º³ÂÔ´Ô´
- *	ÈÕÆÚ£º2016-03-06
- *	¹¦ÄÜ£º½â¾öeulerproject 58Ìâ(https://projecteuler.net/problem=58)
+ *	ç¨‹åºåï¼šeuler58.cpp
+ *	ä½œè€…ï¼šé™ˆæºæº
+ *	æ—¥æœŸï¼š2016-03-06
+ *	åŠŸèƒ½ï¼šè§£å†³eulerproject 58é¢˜(https://projecteuler.net/problem=58)
  */
 #include <cyy/math/all.hpp>
 #include <iostream>
@@ -13,8 +13,7 @@ int main() {
   uint64_t side_length;
   size_t prime_cnt = 0, num, i, num_cnt;
   auto prime_colloction = cyy::math::primes();
-  auto all = prime_colloction.all();
-  auto it = all.begin();
+  auto it = prime_colloction.begin();
 
   for (side_length = 3, num_cnt = 5;; side_length += 2, num_cnt += 4) {
     num = side_length * side_length;
