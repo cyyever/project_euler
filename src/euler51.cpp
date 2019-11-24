@@ -8,7 +8,6 @@
 #include <iostream>
 #include <string>
 
-using namespace my_math;
 using namespace std;
 
 int main() {

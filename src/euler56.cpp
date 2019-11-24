@@ -17,8 +17,8 @@ int main() {
   uint64_t last_nine_num = 0;
   uint32_t last_b = 2;
   for (a = 99; a >= 2; a--) {
-    for (b = last_b, power = cyy::math::exponent(a, b); b < 100;
-         b++, power *= a) {
+    for (b = last_b, power = cyy::math::exponent(cyy::math::integer(a), b);
+         b < 100; b++, power *= a) {
       if (power < threshold) {
         last_b = b + 1;
         continue;

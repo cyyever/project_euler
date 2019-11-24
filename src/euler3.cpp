@@ -13,7 +13,7 @@ using namespace std;
 int main() {
   uint64_t max_prime = 0;
   uint64_t num = 600851475143;
-  for (auto prime : cyy::math::primes().all()) {
+  for (auto prime : cyy::math::primes()) {
     if (num % prime == 0) {
       max_prime = prime;
       while (num % prime == 0) {

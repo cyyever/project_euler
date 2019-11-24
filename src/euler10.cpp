@@ -14,7 +14,7 @@ int main() {
 
   auto primes = cyy::math::primes();
 
-  for (auto prime : primes.all()) {
+  for (auto prime : primes) {
     if (prime >= 2000000) {
       break;
     }
