@@ -23,16 +23,13 @@ int main() {
     if (is.eof()) {
       break;
     }
-    auto det = x1 * (y2 - y3) - y1 * (x2 - x3) + x2 * y3 - y2 * x3;
-    assert(det != 0);
-    if (det > 0) {
-      if (x2 * y3 >= y2 * x3 && x3 * y1 >= x1 * y3 && x1 * y2 >= x2 * y1) {
-        cnt++;
-      }
-    } else {
-      if (x2 * y3 <= y2 * x3 && x3 * y1 <= x1 * y3 && x1 * y2 <= x2 * y1) {
-        cnt++;
-      }
+
+    auto A31 = x2 * y3 - y2 * x3;
+    auto A32 = x3 * y1 - y3 * x1;
+    auto A33 = x1 * y2 - y1 * x2;
+    if (A31 * (A32 + A33) >= 0 && A32 * (A31 + A33) >= 0 &&
+        A33 * (A31 + A32) >= 0) {
+      cnt++;
     }
   }
   std::cout << cnt << std::endl;
