@@ -4,20 +4,14 @@
  *	功能：解决eulerproject 190题(https://projecteuler.net/problem=190)
  */
 
-#include <algorithm>
-#include <utility>
 #include <iostream>
 #include <cyy/math/all.hpp>
 
 
 int main(void) {
   constexpr size_t max_m=15;
-  cyy::math::rational cof[max_m+1];
+  cyy::math::rational cof(1);
 
-  cof[1]=cyy::math::rational(1,1);
-
-  cyy::math::integer sum;
-  for(size_t i=2;i<=max_m;i++) {
 
     //令x[1]+..+x[i] = y
     //那麼max(Pi)=max(cof[i-1](y-x[i])*x[i]^i)
@@ -33,11 +27,12 @@ int main(void) {
     //Pi=cof[i-1](y-x[i])*x[i]^i
     //Pi=cof[i-1]((i-1)/(i+1)y)*2^i*y^i/((i+1)^i)
 
-    cof[i]=cyy::math::rational(
+  cyy::math::integer sum;
+  for(size_t i=2;i<=max_m;i++) {
+    cof*=cyy::math::rational(
 	cyy::math::exponent(cyy::math::integer(i-1),(i-1)*i/2),
-	cyy::math::exponent(cyy::math::integer(i+1),(i-1)*i/2))*cof[i-1]*cyy::math::rational((uint64_t)(1ULL<<i),cyy::math::exponent(cyy::math::integer(i+1),i));
-    auto P=cof[i].numerator()*cyy::math::exponent(cyy::math::integer(i),(i+1)*i/2)/cof[i].denominator();
-    sum+=P;
+	cyy::math::exponent(cyy::math::integer(i+1),(i-1)*i/2))*cyy::math::rational((uint64_t)(1ULL<<i),cyy::math::exponent(cyy::math::integer(i+1),i));
+    sum+=(cof*cyy::math::exponent(cyy::math::integer(i),(i+1)*i/2)).round_zero();
   }
   std::cout<<sum<<std::endl;
   return 0;
