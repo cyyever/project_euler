@@ -31,7 +31,7 @@ int main(void) {
         cyy::math::rational(
             cyy::math::exponent(cyy::math::integer(i - 1), (i - 1) * i / 2),
             cyy::math::exponent(cyy::math::integer(i + 1), (i - 1) * i / 2)) *
-        cyy::math::rational((uint64_t)(1ULL << i),
+        cyy::math::rational(static_cast<uint64_t>(1) << i,
                             cyy::math::exponent(cyy::math::integer(i + 1), i));
     sum += (cof * cyy::math::exponent(cyy::math::integer(i), (i + 1) * i / 2))
                .round_zero();
