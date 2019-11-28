@@ -4,16 +4,15 @@
  *	功能：解决eulerproject 111题(https://projecteuler.net/problem=111)
  */
 
+#include <cyy/math/all.hpp>
 #include <iostream>
+#include <range/v3/all.hpp>
 #include <vector>
 
 using namespace std;
 
 int main() {
   uint64_t repeated_digit_num, num;
-  bool first_combination;
-  vector<bool> combination;
-  ssize_t i, j;
   uint64_t S[10], sum;
   char d, lowest_digit;
   char num_str[11];
@@ -28,51 +27,45 @@ int main() {
       lowest_digit = '0';
     for (repeated_digit_num = 9; repeated_digit_num >= 2;
          repeated_digit_num--) {
-      first_combination = true;
-      while (1) {
-        if (first_combination) {
-          combination = my_next_combination(10, repeated_digit_num);
-          first_combination = false;
-        } else
-          combination =
-              my_next_combination(10, repeated_digit_num, combination);
-        if (combination.size() == 0)
-          break;
-        if (combination[0] && d == '0')
+      for (auto const &combination :
+           cyy::math::all_combinations(10, repeated_digit_num)) {
+        if (combination[0] == 1 && d == '0')
           continue;
-        if (combination[9]) {
+        if (combination.back() == 10) {
           if (((d - '0') & 1) == 0)
             continue;
           else if (d == '5')
             continue;
         }
-        for (i = 0; i < 10; i++) {
-          if (combination[i])
-            num_str[i] = d;
-          else
-            num_str[i] = lowest_digit;
+        for (size_t i = 0; i < 10; i++) {
+          num_str[i] = lowest_digit;
         }
-        if (!combination[0]) {
+        for (auto i : combination) {
+          num_str[i - 1] = d;
+        }
+        if (combination[0] != 1) {
           if (d != '1')
             num_str[0] = '1';
           else
             num_str[0] = '2';
         }
 
-        while (1) {
+        while (true) {
           num = stoull(num_str);
-          if (is_prime(num))
+          if (cyy::math::primes().has(num))
             S[d - '0'] += num;
+          int i;
           for (i = 9; i >= 0; i--) {
-            if (combination[i])
+            if (ranges::binary_search(combination, i + 1)) {
               continue;
+            }
             if (num_str[i] < '9') {
               num_str[i]++;
               if (num_str[i] == d)
                 num_str[i]++;
               if (num_str[i] <= '9') {
-                for (j = i + 1; j < 10; j++) {
-                  if (combination[j])
+                for (int j = i + 1; j < 10; j++) {
+                  if (ranges::binary_search(combination, j + 1))
                     num_str[j] = d;
                   else
                     num_str[j] = lowest_digit;
