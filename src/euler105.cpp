@@ -4,6 +4,7 @@
  *	功能：解决eulerproject 105题(https://projecteuler.net/problem=105)
  */
 
+#include <filesystem>
 #include <fstream>
 #include <iostream>
 #include <utility>
@@ -12,7 +13,7 @@
 std::pair<bool, uint64_t> is_special_sum_set(const std::vector<uint64_t> set);
 
 int main(void) {
-  std::ifstream in_file("p105_sets.txt");
+  std::ifstream in_file(std::filesystem::path(DATA_DIR) / "p105_sets.txt");
   std::vector<uint64_t> set;
   char seq;
   uint64_t sum = 0;
