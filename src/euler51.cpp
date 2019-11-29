@@ -12,8 +12,6 @@ using namespace std;
 
 int main() {
   uint64_t num, prime, finded_prime, distance;
-  bool first_combination;
-  vector<bool> combination;
   ssize_t i, digit_num, replace_digit_num;
   size_t count;
   char replace_digit, digit;
@@ -31,16 +29,9 @@ int main() {
     for (replace_digit_num = 3; replace_digit_num < digit_num;
          replace_digit_num += 3) {
       first_combination = true;
-      while (1) {
-        if (first_combination) {
-          combination = my_next_combination(digit_num - 1, replace_digit_num);
-          first_combination = false;
-        } else
-          combination = my_next_combination(digit_num - 1, replace_digit_num,
-                                            combination);
-        if (combination.size() == 0)
-          break;
 
+      for (auto const &combination :
+           cyy::math::all_combinations(digit_num - 1, replace_digit_num)) {
         for (i = 0; i < digit_num - 1; i++)
           num_str[i] = '0' + combination[i];
         num_str[digit_num - 1] = '0';
@@ -52,15 +43,14 @@ int main() {
         num_str[0] = '1';
         num_str[digit_num - 1] = '1';
         while (1) {
-          for (i = 0; i < digit_num - 1; i++) {
-            if (combination[i])
-              num_str[i] = replace_digit;
+          for (auto n : combination) {
+            num_str[n - 1] = replace_digit;
           }
           num = stoull(num_str);
           count = 0;
           digit = replace_digit;
           do {
-            if (is_prime(num)) {
+            if (cyy::math::primes().has(num)) {
               if (count == 0)
                 prime = num;
               count++;

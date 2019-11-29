@@ -1,10 +1,11 @@
 /*
- *	³ÌĞòÃû£ºeuler59.cpp
- *	×÷Õß£º³ÂÔ´Ô´
- *	ÈÕÆÚ£º2016-03-06
- *	¹¦ÄÜ£º½â¾öeulerproject 59Ìâ(https://projecteuler.net/problem=59)
+ *	ç¨‹åºåï¼šeuler59.cpp
+ *	ä½œè€…ï¼šé™ˆæºæº
+ *	æ—¥æœŸï¼š2016-03-06
+ *	åŠŸèƒ½ï¼šè§£å†³eulerproject 59é¢˜(https://projecteuler.net/problem=59)
  */
 #include <cinttypes>
+#include <filesystem>
 #include <fstream>
 #include <iostream>
 #include <string>
@@ -12,12 +13,11 @@
 
 using namespace std;
 int main() {
-  ifstream in_file("p059_cipher.txt");
+  std::ifstream in_file(std::filesystem::path(DATA_DIR) / "p059_cipher.txt");
   vector<int> encrypted_codes;
-  string encryption_key;
+  char encryption_key[4]{};
   unsigned char sep, plain_char;
   int encrypted_code;
-  uint64_t code_sum;
   vector<string> plain_text;
 
   while (in_file >> encrypted_code) {
@@ -53,10 +53,11 @@ int main() {
     cout << "can't find plain text" << endl;
     return -1;
   }
+  std::cout << plain_text[0] << std::endl;
 
-  code_sum = 0;
-  for (decltype(plain_text[0].size()) i = 0; i < plain_text[0].size(); i++)
-    code_sum += (static_cast<unsigned char>(plain_text[0][i]));
-  cout << code_sum;
+  uint64_t code_sum = 0;
+  for (auto c : plain_text[0])
+    code_sum += static_cast<unsigned char>(c);
+  cout << code_sum << std::endl;
   return 0;
 }

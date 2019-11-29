@@ -5,6 +5,7 @@
  */
 
 #include <cinttypes>
+#include <filesystem>
 #include <fstream>
 #include <iostream>
 
@@ -20,7 +21,7 @@ int main() {
   uint64_t min_path_sum;
   char sep;
 
-  ifstream in_file("p082_matrix.txt");
+  ifstream in_file(std::filesystem::path(DATA_DIR) / "p082_matrix.txt");
   for (i = 0; i < 80; i++) {
     for (j = 0; j < 80; j++) {
       in_file >> matrix[i][j];
@@ -52,7 +53,6 @@ int main() {
  */
 static void find_min_path_sum(size_t matrix_row_num, size_t matrix_col_num) {
   size_t i, j, k;
-  uint64_t min_path_sum, tmp;
 
   if (matrix_col_num == 1) {
     for (i = 0; i < matrix_row_num; i++)
@@ -61,6 +61,7 @@ static void find_min_path_sum(size_t matrix_row_num, size_t matrix_col_num) {
   }
   find_min_path_sum(matrix_row_num, matrix_col_num - 1);
 
+  uint64_t min_path_sum, tmp;
   for (i = 0; i < matrix_row_num; i++) {
     min_path_sum =
         path_sum[i][matrix_col_num - 2] + matrix[i][matrix_col_num - 1];

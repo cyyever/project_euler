@@ -1,8 +1,8 @@
 /*
- *	³ÌĞòÃû£ºeuler42.c
- *	×÷Õß£º³ÂÔ´Ô´
- *	ÈÕÆÚ£º2016-02-05
- *	¹¦ÄÜ£º½â¾öeulerproject 42Ìâ(https://projecteuler.net/problem=42)
+ *	ç¨‹åºåï¼šeuler42.c
+ *	ä½œè€…ï¼šé™ˆæºæº
+ *	æ—¥æœŸï¼š2016-02-05
+ *	åŠŸèƒ½ï¼šè§£å†³eulerproject 42é¢˜(https://projecteuler.net/problem=42)
  */
 
 #include <inttypes.h>
@@ -20,7 +20,7 @@ int main(void) {
   uint64_t word_value, n, triangle_num;
   size_t count;
 
-  p42 = fopen("p042_words.txt", "r");
+  p42 = fopen(DATA_DIR "/p042_words.txt", "r");
   if (!p42) {
     printf("fopen failed:%m");
     return -1;

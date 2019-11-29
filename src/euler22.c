@@ -1,8 +1,8 @@
 /*
- *	³ÌĞòÃû£ºeuler22.c
- *	×÷Õß£º³ÂÔ´Ô´
- *	ÈÕÆÚ£º2016-02-11
- *	¹¦ÄÜ£º½â¾öeulerproject 22Ìâ(https://projecteuler.net/problem=22)
+ *	ç¨‹åºåï¼šeuler22.c
+ *	ä½œè€…ï¼šé™ˆæºæº
+ *	æ—¥æœŸï¼š2016-02-11
+ *	åŠŸèƒ½ï¼šè§£å†³eulerproject 22é¢˜(https://projecteuler.net/problem=22)
  */
 #define _DEFAULT_SOURCE
 #include <inttypes.h>
@@ -10,7 +10,6 @@
 #include <stdlib.h>
 #include <string.h>
 #include <sys/types.h>
-//#include <unistd.h>
 
 #define N 5163
 static int cmpstringp(const void *p1, const void *p2);
@@ -23,7 +22,7 @@ int main(void) {
   size_t i;
   uint64_t score, total_score;
 
-  p22 = fopen("p022_names.txt", "r");
+  p22 = fopen(DATA_DIR "/p022_names.txt", "r");
   if (!p22) {
     printf("fopen failed:%m");
     return -1;
@@ -60,11 +59,11 @@ int main(void) {
 }
 
 /*
- *	¹¦ÄÜ£º´Óman page¸´ÖÆ£¬ÓÃÓÚ±È½Ï×Ö·û´®
- *	²ÎÊı£º
- *		p1£¬p2£ºÖ¸ÏòÒª±È½ÏµÄ×Ö·û´®
- *	·µ»ØÖµ£º
- *		²Î¿´man page
+ *	åŠŸèƒ½ï¼šä»man pageå¤åˆ¶ï¼Œç”¨äºæ¯”è¾ƒå­—ç¬¦ä¸²
+ *	å‚æ•°ï¼š
+ *		p1ï¼Œp2ï¼šæŒ‡å‘è¦æ¯”è¾ƒçš„å­—ç¬¦ä¸²
+ *	è¿”å›å€¼ï¼š
+ *		å‚çœ‹man page
  */
 static int cmpstringp(const void *p1, const void *p2) {
   return strcmp(*(char *const *)p1, *(char *const *)p2);

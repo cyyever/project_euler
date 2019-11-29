@@ -20,7 +20,7 @@ int main(void) {
   uint64_t i, j;
   uint64_t max_total;
 
-  p67 = fopen("p067_triangle.txt", "r");
+  p67 = fopen(DATA_DIR "/p067_triangle.txt", "r");
   if (!p67) {
     printf("fopen failed:%m");
     return -1;

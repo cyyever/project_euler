@@ -4,6 +4,7 @@
  *	功能：解决eulerproject 81题(https://projecteuler.net/problem=81)
  */
 #include <cinttypes>
+#include <filesystem>
 #include <fstream>
 #include <iostream>
 
@@ -18,7 +19,7 @@ int main() {
   size_t i, j;
   char sep;
 
-  ifstream in_file("p081_matrix.txt");
+  ifstream in_file(std::filesystem::path(DATA_DIR) / "p081_matrix.txt");
   for (i = 0; i < 80; i++) {
     for (j = 0; j < 80; j++) {
       in_file >> matrix[i][j];
