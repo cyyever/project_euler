@@ -15,12 +15,18 @@
 namespace {
   struct hand {
     std::map<char, std::set<int>> suits;
-    void remove_value(int v) {
+    void remove_value(int v, size_t most_cnt = 4) {
       std::string empty_suit;
+      size_t cnt = 0;
       for (auto &[c, suit_values] : suits) {
-        suit_values.erase(v);
+        if (suit_values.erase(v)) {
+          cnt++;
+        }
         if (suit_values.empty()) {
           empty_suit.push_back(c);
+        }
+        if (cnt >= most_cnt) {
+          break;
         }
       }
 
@@ -28,6 +34,7 @@ namespace {
         suits.erase(c);
       }
     }
+
     size_t count(int v) const {
       size_t suit_cnt = 0;
       for (auto &[_, suit_values] : suits) {
@@ -46,9 +53,7 @@ namespace {
     std::set<int> all_values() const {
       std::set<int> res;
       for (const auto &[_, suit_values] : suits) {
-        std::set<int> tmp;
-        ranges::set_union(res, suit_values, tmp);
-        res = std::move(tmp);
+        res.merge(std::set<int>(suit_values));
       }
       return res;
     }
@@ -65,7 +70,7 @@ namespace {
     }
     if (h.size() == 5) {
       // Royal Flush: Ten, Jack, Queen, King, Ace, in same suit.
-      for (auto &[suit, values] : h.suits) {
+      for (auto &[_, values] : h.suits) {
         std::set<int> flush{10, 11, 12, 13, 14};
         if (values == flush) {
           seq s;
@@ -76,17 +81,15 @@ namespace {
       }
       // Straight Flush: All cards are consecutive values of same suit.
       if (h.suits.size() == 1) {
-        for (const auto &[suit, values] : h.suits) {
-          if (values.size() == 5) {
-            auto min_value = *values.begin();
-            std::set<int> flush{min_value, min_value + 1, min_value + 2,
-                                min_value + 3, min_value + 4};
-            if (values == flush) {
-              seq s;
-              s.level = 2;
-              s.value = 14;
-              return {s};
-            }
+        for (const auto &[_, values] : h.suits) {
+          auto min_value = *values.begin();
+          std::set<int> flush{min_value, min_value + 1, min_value + 2,
+                              min_value + 3, min_value + 4};
+          if (values == flush) {
+            seq s;
+            s.level = 2;
+            s.value = min_value;
+            return {s};
           }
         }
       }
@@ -94,32 +97,20 @@ namespace {
 
     // Four of a Kind: Four cards of the same value.
     if (h.suits.size() == 4) {
-      auto it = h.suits.begin();
-      auto values = it->second;
-      it++;
-      for (; it != h.suits.end(); it++) {
-        auto tmp = std::move(values);
-        values.clear();
-        ranges::set_intersection(tmp, it->second, values);
-      }
-      if (!values.empty()) {
-        std::vector<seq> tmp;
-        for (auto c : values) {
+      for (int p = 14; p >= 2; p--) {
+        if (h.count(p) == 4) {
           seq s;
           s.level = 3;
-          s.value = c;
-          tmp.push_back(s);
-          h.remove_value(c);
+          s.value = p;
+          return {s};
         }
-        auto remain = process_hand(h);
-        remain.insert(remain.end(), tmp.begin(), tmp.end());
-        return remain;
       }
     }
 
+      auto values = h.all_values();
     if (h.size() == 5) {
       // Full House: Three of a kind and a pair.
-      for (auto k : {13, 12, 11}) {
+      for (int k = 14; k >= 2; k--) {
         if (h.count(k) == 3) {
           for (int p = 14; p >= 2; p--) {
             if (p == k) {
@@ -135,46 +126,42 @@ namespace {
         }
       }
 
-      // All cards of the same suit.
+      // Flush: All cards of the same suit.
       if (h.suits.size() == 1) {
         seq s;
         s.level = 5;
-        s.value = *h.suits[0].values.rbegin();
-        return { s }
+        s.value = 0;
+        for (auto i : values | ranges::views::reverse) {
+          s.value *= 15;
+          s.value += i;
+        }
+        return {s};
       }
-    }
-
-    auto values = h.values();
-
-    // Straight: All cards are consecutive values.
-    if (values.size() == 5) {
+      // Straight: All cards are consecutive values.
       auto min_value = *values.begin();
       if (values == std::set<int>{min_value, min_value + 1, min_value + 2,
                                   min_value + 3, min_value + 4}) {
         seq s;
         s.level = 6;
-        s.value = *values.begin();
-        return { s }
+        s.value = min_value;
+        return {s};
       }
     }
 
     // Three of a Kind: Three cards of the same value.
-    if (values.size() >= 3) {
+    if (h.size() >= 3) {
       for (int p = 14; p >= 2; p--) {
-        if (h.count(p) == 3) {
+        if (h.count(p) >= 3) {
           seq s;
           s.level = 7;
           s.value = p;
-          h.remove_value(p);
-          auto remain = process_hand(h);
-          remain.push_back(s);
-          return remain;
+          return {s};
         }
       }
     }
 
     // Two Pairs: Two different pairs.
-    if (values.size() >= 4) {
+    if (h.size() >= 4) {
       for (int p = 14; p >= 2; p--) {
         if (h.count(p) >= 2) {
           for (int q = p - 1; q >= 2; q--) {
@@ -182,8 +169,8 @@ namespace {
               seq s;
               s.level = 8;
               s.value = p * 15 + q;
-              h.remove_value(p);
-              h.remove_value(q);
+              h.remove_value(p, 2);
+              h.remove_value(q, 2);
               auto remain = process_hand(h);
               remain.push_back(s);
               return remain;
@@ -194,13 +181,13 @@ namespace {
     }
 
     // One Pair: Two cards of the same value.
-    if (values.size() >= 2) {
+    if (h.size() >= 2) {
       for (int p = 14; p >= 2; p--) {
         if (h.count(p) >= 2) {
           seq s;
           s.level = 9;
           s.value = p;
-          h.remove_value(p);
+          h.remove_value(p, 2);
           auto remain = process_hand(h);
           remain.push_back(s);
           return remain;
@@ -210,9 +197,9 @@ namespace {
 
     // High Card: Highest value card.
     seq s;
-    s.level = 9;
+    s.level = 10;
     s.value = *values.rbegin();
-    h.remove_value(s.value);
+    h.remove_value(s.value, 1);
     auto remain = process_hand(h);
     remain.push_back(s);
     return remain;
@@ -235,7 +222,9 @@ int main(void) {
       if (i < 5) {
         h = &a;
       }
-      if (card[0] == 'J') {
+      if (card[0] == 'T') {
+        h->suits[card[1]].insert(10);
+      } else if (card[0] == 'J') {
         h->suits[card[1]].insert(11);
       } else if (card[0] == 'Q') {
         h->suits[card[1]].insert(12);
@@ -243,6 +232,8 @@ int main(void) {
         h->suits[card[1]].insert(13);
       } else if (card[0] == 'A') {
         h->suits[card[1]].insert(14);
+      } else {
+        h->suits[card[1]].insert(card[0] - '0');
       }
     }
     auto a_seqs = process_hand(a);
