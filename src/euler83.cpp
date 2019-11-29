@@ -4,6 +4,7 @@
  *	功能：解决eulerproject 83题(https://projecteuler.net/problem=83)
  */
 #include <cinttypes>
+#include <filesystem>
 #include <fstream>
 #include <iostream>
 #include <list>
@@ -29,7 +30,7 @@ int main() {
   gird_coordinate next_gird, last_gird;
   list<path> all_paths;
 
-  ifstream in_file("p083_matrix.txt");
+  ifstream in_file(std::filesystem::path(DATA_DIR) / "p083_matrix.txt");
   for (i = 0; i < 80; i++) {
     for (j = 0; j < 80; j++) {
       in_file >> matrix[i][j];
