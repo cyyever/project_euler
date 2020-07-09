@@ -6,7 +6,7 @@
 
 #include <cyy/math/all.hpp>
 #include <iostream>
-#include <range/v3/all.hpp>
+#include <ranges>
 #include <vector>
 
 using namespace std;
@@ -56,7 +56,7 @@ int main() {
             S[d - '0'] += num;
           int i;
           for (i = 9; i >= 0; i--) {
-            if (ranges::binary_search(combination, i + 1)) {
+            if (std::ranges::binary_search(combination, i + 1)) {
               continue;
             }
             if (num_str[i] < '9') {
@@ -65,7 +65,7 @@ int main() {
                 num_str[i]++;
               if (num_str[i] <= '9') {
                 for (int j = i + 1; j < 10; j++) {
-                  if (ranges::binary_search(combination, j + 1))
+                  if (std::ranges::binary_search(combination, j + 1))
                     num_str[j] = d;
                   else
                     num_str[j] = lowest_digit;
