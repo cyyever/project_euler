@@ -172,11 +172,11 @@ int main() {
   //以下我们用动态规划来处理
   distribute_prime_powers(prime_attrs, 1999);
   n = 1;
-  for (size_t i = 0; i < prime_attrs.size(); i++) {
-    if (prime_attrs[i].power == 0)
+  for (auto & prime_attr : prime_attrs) {
+    if (prime_attr.power == 0)
       break;
-    for (uint64_t j = 0; j < prime_attrs[i].power; j++)
-      n *= prime_attrs[i].prime;
+    for (uint64_t j = 0; j < prime_attr.power; j++)
+      n *= prime_attr.prime;
   }
   printf("%" PRIu64 "\n", n);
   return 0;
