@@ -4,14 +4,14 @@
  *	功能：解决eulerproject 78题(https://projecteuler.net/problem=78)
  */
 
-#include <inttypes.h>
+#include <cinttypes>
+#include <cstring>
 #include <iostream>
-#include <string.h>
 #include <vector>
 
 #define N 60000
 
-int main(void) {
+int main() {
   size_t i, j;
   std::vector<uint32_t> sum_nums(N + 1, 1);
 

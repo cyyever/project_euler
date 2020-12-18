@@ -10,7 +10,7 @@
 #include <set>
 #include <vector>
 
-int main(void) {
+int main() {
 
   constexpr size_t max_k = 200;
 

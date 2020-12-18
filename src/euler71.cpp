@@ -8,7 +8,7 @@
 #include <iostream>
 #include <vector>
 
-int main(void) {
+int main() {
   const size_t max_denominator = 1000000;
   size_t result_denominator = 1;
   size_t result_numerator = 0;

@@ -10,7 +10,7 @@
 #include <set>
 #include <vector>
 
-int main(void) {
+int main() {
   constexpr uint64_t N = 50000000;
   uint64_t prime_limit = static_cast<uint64_t>(sqrt(N)) + 1;
 

@@ -24,7 +24,7 @@ constexpr size_t N = 10;
 uint64_t get_C_mod_N(uint64_t a, uint64_t b);
 static std::vector<uint64_t> is_prime(M + 1, {});
 
-int main(void) {
+int main() {
 
   std::vector<uint64_t> F(M + 1, 1);
 

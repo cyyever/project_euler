@@ -4,10 +4,11 @@
  *	功能：解决eulerproject 111题(https://projecteuler.net/problem=111)
  */
 
-#include <cyy/math/all.hpp>
 #include <iostream>
 #include <ranges>
 #include <vector>
+
+#include <cyy/math/all.hpp>
 
 using namespace std;
 

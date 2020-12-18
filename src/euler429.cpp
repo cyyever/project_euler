@@ -38,7 +38,7 @@ static uint64_t power(uint64_t base, uint64_t power, uint64_t modulus) {
   return res;
 }
 
-int main(void) {
+int main() {
   constexpr uint64_t modulus = 1000000009;
   constexpr uint64_t N = 100000000;
   std::vector<bool> is_prime(N + 1, true);

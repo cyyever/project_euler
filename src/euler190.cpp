@@ -4,10 +4,11 @@
  *	功能：解决eulerproject 190题(https://projecteuler.net/problem=190)
  */
 
-#include <cyy/math/all.hpp>
 #include <iostream>
 
-int main(void) {
+#include <cyy/math/all.hpp>
+
+int main() {
   constexpr size_t max_m = 15;
   cyy::math::rational cof(1);
 

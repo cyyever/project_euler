@@ -8,7 +8,7 @@
 #include <iostream>
 #include <vector>
 
-int main(void) {
+int main() {
   uint64_t min_sum = 0;
   for (uint64_t i = 1; i <= 50; i++) {
     min_sum += i * i;

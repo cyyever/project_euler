@@ -9,7 +9,7 @@
 #include <iostream>
 #include <vector>
 
-int main(void) {
+int main() {
   constexpr size_t N = 12;
 
   auto subset_cnt = (1ULL << N);

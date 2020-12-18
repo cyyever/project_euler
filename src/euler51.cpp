@@ -4,9 +4,10 @@
  *	功能：解决eulerproject 51题(https://projecteuler.net/problem=51)
  */
 
-#include <cyy/math/all.hpp>
 #include <iostream>
 #include <string>
+
+#include <cyy/math/all.hpp>
 
 using namespace std;
 

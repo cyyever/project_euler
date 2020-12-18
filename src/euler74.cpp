@@ -51,7 +51,7 @@ uint64_t get_chain_len(std::vector<uint64_t> &chain) {
   return get_chain_len(chain);
 }
 
-int main(void) {
+int main() {
   //初始化阶乘
   for (size_t i = 1; i <= 9; i++) {
     factorials.push_back(factorials.back() * i);

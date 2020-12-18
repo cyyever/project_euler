@@ -12,7 +12,7 @@
 
 std::pair<bool, uint64_t> is_special_sum_set(const std::vector<uint64_t> set);
 
-int main(void) {
+int main() {
   std::ifstream in_file(std::filesystem::path(DATA_DIR) / "p105_sets.txt");
   std::vector<uint64_t> set;
   char seq;

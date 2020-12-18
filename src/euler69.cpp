@@ -8,7 +8,7 @@
 #include <iostream>
 #include <vector>
 
-int main(void) {
+int main() {
   const size_t N = 1000000;
   std::vector<bool> is_prime(N + 1, true);
   std::vector<double> result(N + 1, 1.0);

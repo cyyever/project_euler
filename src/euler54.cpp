@@ -7,10 +7,11 @@
 #include <fstream>
 #include <iostream>
 #include <map>
-#include <range/v3/all.hpp>
 #include <set>
 #include <string>
 #include <vector>
+
+#include <range/v3/all.hpp>
 
 namespace {
   struct hand {
@@ -107,7 +108,7 @@ namespace {
       }
     }
 
-      auto values = h.all_values();
+    auto values = h.all_values();
     if (h.size() == 5) {
       // Full House: Three of a kind and a pair.
       for (int k = 14; k >= 2; k--) {
@@ -206,7 +207,7 @@ namespace {
   }
 
 } // namespace
-int main(void) {
+int main() {
   std::ifstream in_file(std::filesystem::path(DATA_DIR) / "p054_poker.txt");
 
   std::string card;

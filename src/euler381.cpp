@@ -7,7 +7,7 @@
 #include <iostream>
 #include <vector>
 
-int main(void) {
+int main() {
   //根据数论，我们知道(p-1)!mod(p)=-1，(p-2)!mod(p)=1
   //于是我们可以找出其它的模
 

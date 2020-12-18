@@ -4,8 +4,9 @@
  *	功能：解决eulerproject 3题(https://projecteuler.net/problem=3)
  */
 
-#include <cyy/math/all.hpp>
 #include <iostream>
+
+#include <cyy/math/all.hpp>
 #include <range/v3/view.hpp>
 
 using namespace std;

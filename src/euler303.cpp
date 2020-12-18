@@ -6,10 +6,11 @@
 
 #include <algorithm>
 #include <cassert>
-#include <cyy/math/all.hpp>
 #include <iostream>
 #include <map>
 #include <string>
+
+#include <cyy/math/all.hpp>
 
 std::string f(uint64_t n) {
   if (n <= 2) {

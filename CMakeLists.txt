@@ -1,17 +1,18 @@
-cmake_minimum_required(VERSION 3.13)
+cmake_minimum_required(VERSION 3.18)
 
-project(ProjectEuler LANGUAGES C CXX)
+project(ProjectEuler LANGUAGES CXX)
 
 include(cmake/all.cmake)
 
 find_package(range-v3 REQUIRED)
-find_package(MyMathLib REQUIRED)
+find_package(CyyMathLib REQUIRED)
 
-file(GLOB sources ${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp  ${CMAKE_CURRENT_SOURCE_DIR}/src/*.c)
+file(GLOB sources ${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp)
 foreach(source ${sources})
   get_filename_component(prog ${source} NAME_WE)
   add_executable(${prog} ${source})
-  target_compile_definitions(${prog} PRIVATE "DATA_DIR=\"${CMAKE_CURRENT_SOURCE_DIR}/data\"")
-  target_link_libraries(${prog} PRIVATE MyMathLib)
+  target_compile_definitions(
+    ${prog} PRIVATE "DATA_DIR=\"${CMAKE_CURRENT_SOURCE_DIR}/data\"")
+  target_link_libraries(${prog} PRIVATE CyyMathLib)
   target_link_libraries(${prog} PRIVATE range-v3)
 endforeach()

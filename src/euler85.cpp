@@ -8,7 +8,7 @@
 #include <array>
 #include <iostream>
 
-int main(void) {
+int main() {
   //如果网格的长,宽是a,b那么矩阵数量是(a+1)*a/2*(b+1)*b/2
   const size_t N = 2000000;
   size_t min_abs = N;

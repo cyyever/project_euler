@@ -13,7 +13,7 @@ namespace {
   std::string min_passcode;
   std::string get_front_by_frequency(const std::vector<std::string> &keys) {
     size_t counts[10]{};
-    std::multimap<size_t, char, std::greater<size_t>> order;
+    std::multimap<size_t, char, std::greater<>> order;
     for (auto const &key : keys) {
       if (!key.empty()) {
         counts[key[0] - '0']++;

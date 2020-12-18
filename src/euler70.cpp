@@ -26,7 +26,7 @@ static bool inline is_permutation(uint64_t a, uint64_t b) {
          0;
 }
 
-int main(void) {
+int main() {
   //参看https://en.wikipedia.org/wiki/Euler%27s_totient_function 获取函数公式
   const size_t N = 10000000;
   std::vector<bool> is_prime(N, true);

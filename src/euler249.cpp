@@ -8,7 +8,7 @@
 #include <iostream>
 #include <vector>
 
-int main(void) {
+int main() {
   const uint64_t N = 5000;
   const uint64_t modulus = 10000000000000000ULL;
   const uint64_t prime_sum_limit = 1548200;

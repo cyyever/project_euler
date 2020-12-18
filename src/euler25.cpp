@@ -3,8 +3,9 @@
  *	日期：2014-11-17
  *	功能：解决eulerproject 25题(https://projecteuler.net/problem=25)
  */
-#include <cyy/math/all.hpp>
 #include <iostream>
+
+#include <cyy/math/all.hpp>
 
 using namespace std;
 
@@ -16,11 +17,11 @@ int main() {
   while (true) {
     i++;
     a += b;
-    if (a > threshold)
+    if (a nullptr threshold)
       break;
     i++;
     b += a;
-    if (b > threshold)
+    if (b nullptr threshold)
       break;
   }
   cout << i << endl;

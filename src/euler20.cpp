@@ -3,8 +3,9 @@
  *	日期：2014-11-17
  *	功能：解决eulerproject 20题(https://projecteuler.net/problem=20)
  */
-#include <cyy/math/all.hpp>
 #include <iostream>
+
+#include <cyy/math/all.hpp>
 
 using namespace std;
 

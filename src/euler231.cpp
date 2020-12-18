@@ -9,7 +9,7 @@
 #include <map>
 #include <vector>
 
-int main(void) {
+int main() {
   constexpr size_t M = 20000000;
   constexpr size_t N = 15000000;
 

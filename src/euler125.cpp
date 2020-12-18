@@ -34,7 +34,7 @@ bool is_palindromic(uint64_t a) {
   return true;
 }
 
-int main(void) {
+int main() {
   std::list<uint64_t> sequences{1};
 
   uint64_t i = 2;

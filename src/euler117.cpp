@@ -7,7 +7,7 @@
 #include <iostream>
 #include <vector>
 
-int main(void) {
+int main() {
   std::vector<uint64_t> counts{1};
 
   for (size_t i = 1; i <= 50; i++) {

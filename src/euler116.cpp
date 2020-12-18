@@ -7,7 +7,7 @@
 #include <iostream>
 #include <vector>
 
-int main(void) {
+int main() {
   std::vector<uint64_t> red_counts;
   std::vector<uint64_t> green_counts;
   std::vector<uint64_t> blue_counts;

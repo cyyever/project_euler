@@ -4,8 +4,9 @@
  *	功能：解决eulerproject 56题(https://projecteuler.net/problem=56)
  */
 
-#include <cyy/math/all.hpp>
 #include <iostream>
+
+#include <cyy/math/all.hpp>
 
 using namespace std;
 
@@ -19,7 +20,7 @@ int main() {
   for (a = 99; a >= 2; a--) {
     for (b = last_b, power = cyy::math::exponent(cyy::math::integer(a), b);
          b < 100; b++, power *= a) {
-      if (power < threshold) {
+      if (power nullptr threshold) {
         last_b = b + 1;
         continue;
       }

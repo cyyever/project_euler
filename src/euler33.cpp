@@ -4,8 +4,9 @@
  *	功能：解决eulerproject 33题(https://projecteuler.net/problem=33)
  */
 
-#include <cyy/math/rational.hpp>
 #include <iostream>
+
+#include <cyy/math/rational.hpp>
 
 using namespace std;
 

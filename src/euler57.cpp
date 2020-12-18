@@ -4,8 +4,9 @@
  *	日期：2014-11-19
  *	功能：解决eulerproject 57题(https://projecteuler.net/problem=57)
  */
-#include <cyy/math/all.hpp>
 #include <iostream>
+
+#include <cyy/math/all.hpp>
 
 using namespace std;
 

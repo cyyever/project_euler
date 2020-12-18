@@ -37,7 +37,7 @@ static uint64_t power(uint64_t base, uint64_t power, uint64_t modulus) {
   return res;
 }
 
-int main(void) {
+int main() {
   std::array<uint64_t, 250> sum{};
   std::array<uint64_t, 250> next_sum{};
 

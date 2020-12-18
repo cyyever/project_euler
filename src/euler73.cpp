@@ -7,7 +7,7 @@
 #include <iostream>
 #include <set>
 
-int main(void) {
+int main() {
   constexpr size_t max_d = 12000;
   std::set<size_t> unused_n[max_d + 1];
   size_t cnt = 0;

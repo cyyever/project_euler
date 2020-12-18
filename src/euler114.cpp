@@ -7,7 +7,7 @@
 #include <iostream>
 #include <vector>
 
-int main(void) {
+int main() {
   uint64_t grey_count = 1;
   uint64_t one_red_count = 1;
   uint64_t two_red_count = 1;
