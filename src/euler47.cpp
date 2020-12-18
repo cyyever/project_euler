@@ -1,39 +1,35 @@
 /*
- *	³ÌĞòÃû£ºeuler47.c
- *	×÷Õß£º³ÂÔ´Ô´
- *	ÈÕÆÚ£º2014-11-19
- *	¹¦ÄÜ£º½â¾öeulerproject 47Ìâ(https://projecteuler.net/problem=47)
+ *	ç¨‹åºåï¼šeuler47.c
+ *	ä½œè€…ï¼šé™ˆæºæº
+ *	æ—¥æœŸï¼š2014-11-19
+ *	åŠŸèƒ½ï¼šè§£å†³eulerproject 47é¢˜(https://projecteuler.net/problem=47)
  */
 #include <cinttypes>
 #include <cstdio>
 #include <cstdlib>
 #include <cstring>
+#include <vector>
 
 #define N 1000000
 
-using num_attr = struct {
+struct num_attr {
   uint8_t is_prime;
   uint64_t prime_num;
 };
 
 int main() {
-  num_attr *num_attrs;
   uint64_t i, j;
 
-  num_attrs = calloc(N + 1, sizeof(num_attr));
-  if (!num_attrs) {
-    printf("malloc failed:%m\n");
-    return -1;
-  }
+  std::vector<num_attr> num_attrs(N + 1);
 
-  //±êÊ¶ÖÊÊı
+  //æ ‡è¯†è´¨æ•°
   for (i = 2; i <= N; i++)
     num_attrs[i].is_prime = 1;
 
   for (i = 2; i <= N; i++) {
-    if (num_attrs[i].is_prime) //ÖÊÊıµÄÕæ³ıÊıºÍ¿Ï¶¨ÊÇ1£¬¶øÇÒ²»ÊÇamicable number
+    if (num_attrs[i].is_prime) //è´¨æ•°çš„çœŸé™¤æ•°å’Œè‚¯å®šæ˜¯1ï¼Œè€Œä¸”ä¸æ˜¯amicable number
     {
-      //¿ªÊ¼±êÊ¶ºÏÊı
+      //å¼€å§‹æ ‡è¯†åˆæ•°
       for (j = i * 2; j <= N; j += i) {
         num_attrs[j].prime_num++;
         num_attrs[j].is_prime = 0;

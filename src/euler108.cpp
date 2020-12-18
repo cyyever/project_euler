@@ -8,71 +8,15 @@
 #include <cstdio>
 #include <cstdlib>
 
-#define N 20000
-static struct { uint8_t is_prime; } * num_attrs;
+#include <cyy/math/all.hpp>
 
-static struct {
+#define N 20000
+
+struct prime_attr {
   uint64_t prime;
   uint64_t power;
-} * prime_attrs;
+};
 
-static uint64_t prime_num;
-
-static void distribute_prime_powers(uint64_t min_divisor_num);
-
-int main() {
-  uint64_t i, j;
-  uint64_t n;
-
-  num_attrs = calloc(N + 1, sizeof(*num_attrs));
-  if (!num_attrs) {
-    printf("calloc failed:%m\n");
-    return -1;
-  }
-
-  //找出质数
-  for (i = 2; i <= N; i++)
-    num_attrs[i].is_prime = 1;
-  prime_num = 0;
-  for (i = 2; i <= N; i++) {
-    if (num_attrs[i].is_prime) {
-      prime_num++;
-      for (j = i * 2; j <= N; j += i)
-        num_attrs[j].is_prime = 0;
-    }
-  }
-
-  //重新分配内存，保证都是质数
-  prime_attrs = calloc(prime_num, sizeof(*prime_attrs));
-  if (!prime_attrs) {
-    printf("calloc failed:%m\n");
-    free(num_attrs);
-    return -1;
-  }
-  j = 0;
-  for (i = 2; i <= N; i++) {
-    if (num_attrs[i].is_prime) {
-      prime_attrs[j].prime = i;
-      prime_attrs[j].power = 0;
-      j++;
-    }
-  }
-  free(num_attrs);
-  //对于每个n，他的不同解的数量*2-1就是它的平方的除数数量，因此这题的实质是找出平方的除数数量超过1000*2-1的最小数字
-  //考虑到每个数字都能唯一地分解成质数的指数的乘积，我们可以用构造法来找到这个数字
-  //以下我们用动态规划来处理
-  distribute_prime_powers(1999);
-  n = 1;
-  for (i = 0; i < prime_num; i++) {
-    if (prime_attrs[i].power == 0)
-      break;
-    for (j = 0; j < prime_attrs[i].power; j++)
-      n *= prime_attrs[i].prime;
-  }
-  printf("%" PRIu64 "\n", n);
-  free(prime_attrs);
-  return 0;
-}
 /*
  *	功能：通过调整质数的指数分布找出平方的除数数量超过指定数量的最小数字
  *	参数：
@@ -80,7 +24,8 @@ int main() {
  *	返回值：
  *		无
  */
-static void distribute_prime_powers(uint64_t min_divisor_num) {
+static void distribute_prime_powers(std::vector<prime_attr> &prime_attrs,
+                                    uint64_t min_divisor_num) {
   uint64_t prime_power, next_prime_power;
   uint64_t new_prime_powr;
   uint64_t i, j, k, flag, max_prime_index;
@@ -210,4 +155,29 @@ static void distribute_prime_powers(uint64_t min_divisor_num) {
       break;
   }
   return;
+}
+
+int main() {
+  uint64_t n;
+
+  std::vector<prime_attr> prime_attrs;
+  for (auto prime : cyy::math::primes()) {
+    if (prime > N) {
+      break;
+    }
+    prime_attrs.emplace_back(prime, 0);
+  }
+  //对于每个n，他的不同解的数量*2-1就是它的平方的除数数量，因此这题的实质是找出平方的除数数量超过1000*2-1的最小数字
+  //考虑到每个数字都能唯一地分解成质数的指数的乘积，我们可以用构造法来找到这个数字
+  //以下我们用动态规划来处理
+  distribute_prime_powers(prime_attrs, 1999);
+  n = 1;
+  for (size_t i = 0; i < prime_attrs.size(); i++) {
+    if (prime_attrs[i].power == 0)
+      break;
+    for (uint64_t j = 0; j < prime_attrs[i].power; j++)
+      n *= prime_attrs[i].prime;
+  }
+  printf("%" PRIu64 "\n", n);
+  return 0;
 }

@@ -7,6 +7,7 @@
 #include <cinttypes>
 #include <cstdio>
 #include <cstdlib>
+#include <vector>
 
 #define N 1000000
 
@@ -36,16 +37,8 @@ int main() {
  *		序列长度
  */
 static uint64_t get_collatz_sequence_len(uint64_t start_num) {
-  static uint64_t *sequence_lens;
+  static std::vector<uint64_t> sequence_lens(N + 1, 0);
   uint64_t len, num;
-
-  if (!sequence_lens) {
-    sequence_lens = calloc(N + 1, sizeof(*sequence_lens));
-    if (!sequence_lens) {
-      printf("calloc failed:%m\n");
-      return 0;
-    }
-  }
 
   len = 1;
   num = start_num;

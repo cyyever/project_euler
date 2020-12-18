@@ -20,7 +20,7 @@ int main() {
   for (a = 99; a >= 2; a--) {
     for (b = last_b, power = cyy::math::exponent(cyy::math::integer(a), b);
          b < 100; b++, power *= a) {
-      if (power nullptr threshold) {
+      if (power < threshold) {
         last_b = b + 1;
         continue;
       }

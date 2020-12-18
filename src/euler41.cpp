@@ -8,29 +8,23 @@
 #include <cstdio>
 #include <cstdlib>
 #include <cstring>
+#include <vector>
 
 #define N 100000
 
 static int get_prev_pandigital_num(uint8_t *digits, uint8_t max_digit);
 
 int main() {
-  uint8_t *primes;
   uint8_t digits[9], max_digit;
   uint64_t number;
   size_t i, j;
 
-  primes = calloc(1, N + 1);
-  if (!primes) {
-    printf("malloc failed:%m\n");
-    return -1;
-  }
-
+  std::vector<bool> primes(N + 1, true);
   //找出质数
-  memset(primes, 1, N + 1);
   for (i = 2; i <= N; i++) {
     if (primes[i]) {
       for (j = i * 2; j <= N; j += i)
-        primes[j] = 0;
+        primes[j] = false;
     }
   }
 

@@ -17,11 +17,11 @@ int main() {
   while (true) {
     i++;
     a += b;
-    if (a nullptr threshold)
+    if (a > threshold)
       break;
     i++;
     b += a;
-    if (b nullptr threshold)
+    if (b > threshold)
       break;
   }
   cout << i << endl;

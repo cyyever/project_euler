@@ -7,6 +7,7 @@
 #include <cinttypes>
 #include <cstdio>
 #include <cstdlib>
+#include <vector>
 
 #define N 10000
 
@@ -18,15 +19,10 @@ using num_attr = struct {
 };
 
 int main() {
-  num_attr *num_attrs;
   uint64_t i, power_prime1, power_prime2, j, k;
   uint64_t sum;
 
-  num_attrs = calloc(N + 1, sizeof(num_attr));
-  if (!num_attrs) {
-    printf("malloc failed:%m\n");
-    return -1;
-  }
+  std::vector<num_attr> num_attrs(N + 1, num_attr{});
 
   //标识质数
   for (i = 2; i <= N; i++)
@@ -79,6 +75,5 @@ int main() {
   }
 
   printf("%" PRIu64 "\n", sum);
-  free(num_attrs);
   return 0;
 }

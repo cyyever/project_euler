@@ -7,22 +7,18 @@
 #include <cstdio>
 #include <cstdlib>
 #include <cstring>
-#include <unistd.h>
+#include <vector>
 
 static int get_next_part_pandigital_num(uint8_t *digits, uint8_t digit_num);
 
 int main() {
   size_t i, j, k;
   uint64_t a, b, c, sum;
-  uint8_t digits[] = {1, 2, 3, 4, 5}, *c_flags;
+  uint8_t digits[] = {1, 2, 3, 4, 5};
   char str[20];
   int flag;
 
-  c_flags = calloc(100000, 1);
-  if (!c_flags) {
-    printf("calloc failed:%m");
-    return 0;
-  }
+  std::vector<bool> c_flags(100000, false);
 
   //令a*b=c，则c的位数是a和b的位数和或少1
   //为了满足等式，根据观察可知两个乘数的位数之和必须为5，可以指定a4位b1位或a3位b2位
@@ -57,14 +53,13 @@ int main() {
       if (flag == 1) {
         if (!c_flags[c]) {
           sum += c;
-          c_flags[c] = 1;
+          c_flags[c] = true;
         }
         break;
       }
     }
   } while (get_next_part_pandigital_num(digits, 5));
   printf("%" PRIu64 "\n", sum);
-  free(c_flags);
   return 0;
 }
 

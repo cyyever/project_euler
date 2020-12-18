@@ -8,25 +8,19 @@
 #include <cstdio>
 #include <cstdlib>
 #include <cstring>
+#include <vector>
 
 static uint16_t get_digit_mask(uint64_t number);
 
 int main() {
-  uint8_t *primes;
   size_t i, j;
 
-  primes = calloc(1, 10000);
-  if (!primes) {
-    printf("malloc failed:%m\n");
-    return -1;
-  }
+  std::vector<bool> primes(10000, true);
 
-  //找出质数
-  memset(primes, 1, 10000);
-  for (i = 2; i <= 10000; i++) {
+  for (i = 2; i <= primes.size(); i++) {
     if (primes[i]) {
-      for (j = i * 2; j <= 10000; j += i)
-        primes[j] = 0;
+      for (j = i * 2; j <= primes.size(); j += i)
+        primes[j] = false;
     }
   }
 

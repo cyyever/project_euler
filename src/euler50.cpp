@@ -8,25 +8,18 @@
 #include <cstdio>
 #include <cstdlib>
 #include <cstring>
+#include <vector>
 
 int main() {
-  uint8_t *primes;
   size_t i, j;
   size_t max_length, max_length_prime;
   size_t tmp_length, tmp_prime;
 
-  primes = calloc(1, 100000000);
-  if (!primes) {
-    printf("malloc failed:%m\n");
-    return -1;
-  }
-
-  //找出质数
-  memset(primes, 1, 1000000);
-  for (i = 2; i <= 1000000; i++) {
+  std::vector<bool> primes(1000000, true);
+  for (i = 2; i <= primes.size(); i++) {
     if (primes[i]) {
-      for (j = i * 2; j <= 1000000; j += i)
-        primes[j] = 0;
+      for (j = i * 2; j <= primes.size(); j += i)
+        primes[j] = false;
     }
   }
 
