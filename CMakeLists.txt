@@ -4,6 +4,8 @@ project(ProjectEuler LANGUAGES CXX)
 
 include(cmake/all.cmake)
 
+find_package(Boost REQUIRED)
+find_package(Eigen3)
 find_package(range-v3 REQUIRED)
 find_package(CyyMathLib REQUIRED)
 

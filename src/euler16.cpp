@@ -12,7 +12,7 @@ using namespace std;
 
 int main() {
   cyy::math::integer a = 1;
-  a.multiply_2(1000);
+  a.multiply(1000);
   uint64_t digit_sum = 0;
   while (a != 0) {
     digit_sum += a % 10;

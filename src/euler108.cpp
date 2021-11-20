@@ -172,7 +172,7 @@ int main() {
   //以下我们用动态规划来处理
   distribute_prime_powers(prime_attrs, 1999);
   n = 1;
-  for (auto & prime_attr : prime_attrs) {
+  for (auto &prime_attr : prime_attrs) {
     if (prime_attr.power == 0)
       break;
     for (uint64_t j = 0; j < prime_attr.power; j++)
