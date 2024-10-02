@@ -5,7 +5,7 @@
  */
 
 #include <array>
-#include <fstream>
+#include <cstdint>
 #include <iostream>
 #include <vector>
 
